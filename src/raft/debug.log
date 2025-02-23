@@ -1,0 +1,1746 @@
+[DEBUG] raft.go:324: id:2 term:0 state:Follower hearts pass
+[DEBUG] raft.go:324: id:0 term:1 state:Follower vote success from 2
+[DEBUG] raft.go:324: id:2 term:1 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:1 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:1 term:1 state:Follower vote success from 2
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 2
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 2
+[DEBUG] raft.go:324: id:2 term:1 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Leader start [[{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:1 term:1 state:Follower append success from [2 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:0 term:1 state:Follower append success from [2 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Leader apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 2
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 2
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:1 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:0 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:1 state:Follower has voted but convert 1 2
+[DEBUG] raft.go:324: id:0 term:1 state:Follower has voted but convert 1 2
+[DEBUG] raft.go:324: id:1 term:2 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:3 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:3 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:0 term:3 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:2 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:3 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:0 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:3 state:Leader apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:1 term:3 state:Leader start [[{<nil> 0 0} {11 1 1} {12 3 2}]]
+[DEBUG] raft.go:324: id:2 term:3 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2}]]
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2}]]
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:3 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:0 term:3 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:1 term:3 state:Leader apply logs [{12 3 2}]
+[DEBUG] raft.go:324: id:2 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower apply logs [{12 3 2}]
+[DEBUG] raft.go:324: id:2 term:3 state:Follower apply logs [{12 3 2}]
+[DEBUG] raft.go:324: id:2 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:3 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:3 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:3 state:Follower has voted but convert 0 1
+[DEBUG] raft.go:324: id:1 term:3 state:Follower has voted but convert 0 1
+[DEBUG] raft.go:324: id:0 term:4 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:5 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:1 term:5 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:5 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:0 term:5 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:2 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower apply logs [{11 1 1} {12 3 2}]
+[DEBUG] raft.go:324: id:0 term:5 state:Leader start [[{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3}]]
+[DEBUG] raft.go:324: id:2 term:5 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3}]]
+[DEBUG] raft.go:324: id:1 term:5 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3}]]
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:5 state:Leader apply logs [{13 5 3}]
+[DEBUG] raft.go:324: id:2 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:1 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower apply logs [{13 5 3}]
+[DEBUG] raft.go:324: id:2 term:5 state:Follower apply logs [{13 5 3}]
+[DEBUG] raft.go:324: id:2 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:1 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:5 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:5 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:5 state:Follower has voted but convert 1 0
+[DEBUG] raft.go:324: id:1 term:6 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:7 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:7 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader start [[{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4}]]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4}]]
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader apply logs [{14 7 4}]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower apply logs [{14 7 4}]
+[DEBUG] raft.go:324: id:0 term:7 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4}]]
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower apply logs [{11 1 1} {12 3 2} {13 5 3} {14 7 4}]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader start [[{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5}]]
+[DEBUG] raft.go:324: id:0 term:7 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5}]]
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader apply logs [{15 7 5}]
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower apply logs [{15 7 5}]
+[DEBUG] raft.go:324: id:1 term:7 state:Leader start [[{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5} {16 7 6}]]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:7 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5} {16 7 6}]]
+[DEBUG] raft.go:324: id:0 term:7 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5} {16 7 6}]]
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader apply logs [{16 7 6}]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower apply logs [{11 1 1} {12 3 2} {13 5 3} {14 7 4} {15 7 5}]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:7 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:7 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:7 state:Follower apply logs [{16 7 6}]
+[DEBUG] raft.go:324: id:2 term:7 state:Follower apply logs [{16 7 6}]
+[DEBUG] raft.go:324: id:0 term:7 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:0 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:1 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:1 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:3 term:1 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:0 term:1 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:2 term:1 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:4 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:7 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:1 state:Leader start [[{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:4 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:0 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1}]]
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:4 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:0 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:4 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:1 term:1 state:Follower apply logs [{11 1 1}]
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:4 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:4 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2}]]
+[DEBUG] raft.go:324: id:1 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2}]]
+[DEBUG] raft.go:324: id:2 term:1 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2}]]
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader apply logs [{12 1 2}]
+[DEBUG] raft.go:324: id:4 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:1 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:1 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:1 state:Follower apply logs [{12 1 2}]
+[DEBUG] raft.go:324: id:2 term:1 state:Follower apply logs [{12 1 2}]
+[DEBUG] raft.go:324: id:0 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:2 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:2 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:1 state:Follower hearts pass
+[DEBUG] raft.go:324: id:0 term:2 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:2 state:Follower has voted but convert 0 4
+[DEBUG] raft.go:324: id:1 term:2 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:3 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:4 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:0 term:4 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:2 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:3 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:4 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:5 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:3 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:4 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:4 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:5 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:6 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:5 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:5 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:6 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:7 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:7 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:7 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:7 state:Follower has voted but convert 1 0
+[DEBUG] raft.go:324: id:0 term:7 state:Candidate has voted but convert 1 0
+[DEBUG] raft.go:324: id:2 term:6 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:7 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:8 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:9 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:0 term:9 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:1 term:9 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:9 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:1 term:9 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:4 term:9 state:Follower 1-------- from 1
+[DEBUG] raft.go:324: id:1 term:9 state:Leader >lastlog
+[DEBUG] raft.go:324: id:0 term:9 state:Follower 1-------- from 1
+[DEBUG] raft.go:324: id:1 term:9 state:Leader >lastlog
+[DEBUG] raft.go:324: id:1 term:9 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3}]]
+[DEBUG] raft.go:324: id:4 term:9 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3}]]
+[DEBUG] raft.go:324: id:0 term:9 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3}]]
+[DEBUG] raft.go:324: id:1 term:9 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:9 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:8 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:9 state:Leader apply logs [{11 1 1} {12 1 2} {13 9 3}]
+[DEBUG] raft.go:324: id:4 term:9 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:9 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:9 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:9 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:9 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3}]
+[DEBUG] raft.go:324: id:0 term:9 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3}]
+[DEBUG] raft.go:324: id:1 term:9 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4}]]
+[DEBUG] raft.go:324: id:2 term:9 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:1 state:Leader has voted but convert 2 3
+[DEBUG] raft.go:324: id:4 term:10 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4}]]
+[DEBUG] raft.go:324: id:3 term:10 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4}]]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4}]]
+[DEBUG] raft.go:324: id:0 term:10 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4}]]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:10 state:Follower apply logs [{13 9 3}]
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate apply logs [{13 9 3}]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader apply logs [{14 9 4}]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:4 term:10 state:Follower apply logs [{14 9 4}]
+[DEBUG] raft.go:324: id:0 term:10 state:Follower apply logs [{14 9 4}]
+[DEBUG] raft.go:324: id:3 term:10 state:Follower apply logs [{14 9 4}]
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate apply logs [{14 9 4}]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:4 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:10 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:10 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5}]]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5}]]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:10 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5}]]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:10 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:10 state:Leader apply logs [{15 10 5}]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:10 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:10 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:10 state:Follower apply logs [{15 10 5}]
+[DEBUG] raft.go:324: id:4 term:10 state:Follower apply logs [{15 10 5}]
+[DEBUG] raft.go:324: id:3 term:10 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:11 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:11 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:10 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:11 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:11 state:Follower has voted but convert 2 3
+[DEBUG] raft.go:324: id:0 term:10 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:11 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:12 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:13 state:Follower vote success from 2
+[DEBUG] raft.go:324: id:2 term:13 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:11 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:12 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:13 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:14 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:12 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:13 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:14 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:15 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:13 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:14 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:15 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:16 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:2 term:16 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:14 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:16 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:17 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:2 term:17 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:15 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:17 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:17 state:Follower has voted but convert 4 2
+[DEBUG] raft.go:324: id:2 term:17 state:Candidate has voted but convert 4 2
+[DEBUG] raft.go:324: id:0 term:16 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:18 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:19 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:19 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:4 term:19 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:3 term:19 state:Follower 1-------- from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader >lastlog
+[DEBUG] raft.go:324: id:2 term:19 state:Follower 1-------- from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader >lastlog
+[DEBUG] raft.go:324: id:4 term:19 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]]
+[DEBUG] raft.go:324: id:3 term:19 state:Follower append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]]
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]]
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:17 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:19 state:Leader apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]
+[DEBUG] raft.go:324: id:3 term:19 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {17 10 6}]]
+[DEBUG] raft.go:324: id:1 term:10 state:Leader reply term more big
+[DEBUG] raft.go:324: id:0 term:18 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:19 state:Follower append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]]
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6}]]
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower apply logs [{16 19 6}]
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate apply logs [{16 19 6}]
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:19 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:19 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:19 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:19 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:19 state:Leader has voted but convert 0 4
+[DEBUG] raft.go:324: id:1 term:20 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:3 term:19 state:Follower has voted but convert 0 4
+[DEBUG] raft.go:324: id:2 term:19 state:Follower has voted but convert 0 4
+[DEBUG] raft.go:324: id:4 term:20 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:20 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:3 term:20 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:20 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:20 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:20 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:21 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:21 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:0 term:21 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:3 term:21 state:Follower vote success from 0
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader vote receive -- exit candidate or term add
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7}]]
+[DEBUG] raft.go:324: id:4 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7}]]
+[DEBUG] raft.go:324: id:1 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7}]]
+[DEBUG] raft.go:324: id:2 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7}]]
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7}]]
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader apply logs [{17 21 7}]
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower apply logs [{17 21 7}]
+[DEBUG] raft.go:324: id:2 term:21 state:Follower apply logs [{17 21 7}]
+[DEBUG] raft.go:324: id:3 term:21 state:Follower apply logs [{17 21 7}]
+[DEBUG] raft.go:324: id:1 term:21 state:Follower apply logs [{17 21 7}]
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:1 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8}]]
+[DEBUG] raft.go:324: id:4 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8}]]
+[DEBUG] raft.go:324: id:3 term:21 state:Follower append success from [0 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8}]]
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:21 state:Leader apply logs [{18 21 8}]
+[DEBUG] raft.go:324: id:1 term:21 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:21 state:Follower get hearts from 0
+[DEBUG] raft.go:324: id:0 term:21 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:21 state:Follower apply logs [{18 21 8}]
+[DEBUG] raft.go:324: id:3 term:21 state:Follower apply logs [{18 21 8}]
+[DEBUG] raft.go:324: id:2 term:21 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:22 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:21 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:22 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:21 state:Follower has voted but convert 1 0
+[DEBUG] raft.go:324: id:4 term:21 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:23 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:24 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:1 term:24 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:3 term:22 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:22 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:24 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:25 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:3 term:23 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:23 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:24 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:25 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:26 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:4 term:24 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:25 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:26 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:27 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:3 term:27 state:Follower request vote -- args.term little from 1
+[DEBUG] raft.go:324: id:4 term:25 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:27 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:28 state:Follower request vote -- args.term little from 1
+[DEBUG] raft.go:324: id:1 term:28 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:3 term:28 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:28 state:Candidate has voted but convert 3 1
+[DEBUG] raft.go:324: id:2 term:28 state:Follower has voted but convert 3 1
+[DEBUG] raft.go:324: id:4 term:26 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:29 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:30 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:30 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:3 term:30 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:1 term:30 state:Follower 1-------- from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader >lastlog
+[DEBUG] raft.go:324: id:2 term:30 state:Follower 1-------- from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader >lastlog
+[DEBUG] raft.go:324: id:4 term:27 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:30 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]]
+[DEBUG] raft.go:324: id:2 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]]
+[DEBUG] raft.go:324: id:1 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]
+[DEBUG] raft.go:324: id:4 term:28 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]
+[DEBUG] raft.go:324: id:1 term:30 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9}]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10}]]
+[DEBUG] raft.go:324: id:0 term:21 state:Leader reply term more big
+[DEBUG] raft.go:324: id:4 term:29 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate apply logs [{19 30 9}]
+[DEBUG] raft.go:324: id:0 term:30 state:Follower apply logs [{19 30 9}]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader apply logs [{20 30 10}]
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower apply logs [{20 30 10}]
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate apply logs [{20 30 10}]
+[DEBUG] raft.go:324: id:1 term:30 state:Follower apply logs [{20 30 10}]
+[DEBUG] raft.go:324: id:2 term:30 state:Follower apply logs [{20 30 10}]
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:0 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:0 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate get hearts from 3
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:0 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:30 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:30 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11}]]
+[DEBUG] raft.go:324: id:1 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower append success from [3 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:30 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:30 state:Leader apply logs [{21 30 11}]
+[DEBUG] raft.go:324: id:0 term:30 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:30 state:Follower get hearts from 3
+[DEBUG] raft.go:324: id:3 term:30 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:30 state:Follower apply logs [{21 30 11}]
+[DEBUG] raft.go:324: id:2 term:30 state:Follower apply logs [{21 30 11}]
+[DEBUG] raft.go:324: id:4 term:31 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:31 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:31 state:Follower hearts pass
+[DEBUG] raft.go:324: id:0 term:31 state:Follower has voted but convert 4 0
+[DEBUG] raft.go:324: id:2 term:30 state:Follower hearts pass
+[DEBUG] raft.go:324: id:1 term:30 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:32 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:33 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:33 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:31 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:31 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:33 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:34 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:32 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:32 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:34 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:35 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:33 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:33 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:35 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:36 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:36 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:1 term:34 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:34 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:36 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:37 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:37 state:Follower request vote -- args.term little from 4
+[DEBUG] raft.go:324: id:2 term:35 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:37 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:37 state:Candidate has voted but convert 1 4
+[DEBUG] raft.go:324: id:0 term:37 state:Follower has voted but convert 1 4
+[DEBUG] raft.go:324: id:2 term:36 state:Candidate elect pass
+[DEBUG] raft.go:324: id:1 term:38 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:39 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower vote success from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:1 term:39 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:1 term:39 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:4 term:39 state:Follower 1-------- from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower 1-------- from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader >lastlog
+[DEBUG] raft.go:324: id:1 term:39 state:Leader >lastlog
+[DEBUG] raft.go:324: id:1 term:39 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]]
+[DEBUG] raft.go:324: id:2 term:37 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]]
+[DEBUG] raft.go:324: id:0 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:39 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12}]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13}]]
+[DEBUG] raft.go:324: id:3 term:30 state:Leader reply term more big
+[DEBUG] raft.go:324: id:2 term:38 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower vote success from 2
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:4 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13}]]
+[DEBUG] raft.go:324: id:0 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13}]]
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13}]]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13}]]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower apply logs [{22 39 12}]
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate apply logs [{22 39 12}]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader apply logs [{23 39 13}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate apply logs [{23 39 13}]
+[DEBUG] raft.go:324: id:0 term:39 state:Follower apply logs [{23 39 13}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower apply logs [{23 39 13}]
+[DEBUG] raft.go:324: id:3 term:39 state:Follower apply logs [{23 39 13}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:3 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:4 term:39 state:Follower request vote -- args.term little from 2
+[DEBUG] raft.go:324: id:1 term:39 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14}]]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14}]]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:39 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14}]]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader apply logs [{24 39 14}]
+[DEBUG] raft.go:324: id:2 term:39 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:39 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:39 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:39 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:39 state:Follower apply logs [{24 39 14}]
+[DEBUG] raft.go:324: id:4 term:39 state:Follower apply logs [{24 39 14}]
+[DEBUG] raft.go:324: id:2 term:40 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:40 state:Candidate elect pass
+[DEBUG] raft.go:324: id:0 term:39 state:Follower hearts pass
+[DEBUG] raft.go:324: id:4 term:39 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:40 state:Follower hearts pass
+[DEBUG] raft.go:324: id:2 term:40 state:Follower has voted but convert 3 2
+[DEBUG] raft.go:324: id:0 term:40 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:40 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:41 state:Candidate elect pass
+[DEBUG] raft.go:324: id:2 term:42 state:Follower vote success from 3
+[DEBUG] raft.go:324: id:3 term:42 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:41 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:42 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:41 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:43 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:42 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:42 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:43 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:44 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:43 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:44 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:43 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:45 state:Follower request vote -- args.term little from 3
+[DEBUG] raft.go:324: id:3 term:45 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:0 term:44 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:45 state:Follower hearts pass
+[DEBUG] raft.go:324: id:3 term:45 state:Candidate has voted but convert 4 3
+[DEBUG] raft.go:324: id:2 term:45 state:Follower has voted but convert 4 3
+[DEBUG] raft.go:324: id:0 term:45 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:46 state:Candidate elect pass
+[DEBUG] raft.go:324: id:3 term:47 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:47 state:Candidate get 2 votes
+[DEBUG] raft.go:324: id:2 term:47 state:Follower vote success from 4
+[DEBUG] raft.go:324: id:4 term:47 state:Candidate get 3 votes
+[DEBUG] raft.go:324: id:4 term:47 state:Leader get enough vote become leader
+[DEBUG] raft.go:324: id:3 term:47 state:Follower 1-------- from 4
+[DEBUG] raft.go:324: id:4 term:47 state:Leader >lastlog
+[DEBUG] raft.go:324: id:2 term:47 state:Follower 1-------- from 4
+[DEBUG] raft.go:324: id:4 term:47 state:Leader >lastlog
+[DEBUG] raft.go:324: id:4 term:47 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]]
+[DEBUG] raft.go:324: id:3 term:47 state:Follower append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]]
+[DEBUG] raft.go:324: id:2 term:47 state:Follower append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]]
+[DEBUG] raft.go:324: id:4 term:47 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:47 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:46 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:47 state:Leader apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]
+[DEBUG] raft.go:324: id:3 term:47 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:47 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:47 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:47 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:47 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]
+[DEBUG] raft.go:324: id:3 term:47 state:Follower apply logs [{11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {25 47 15}]
+[DEBUG] raft.go:324: id:1 term:39 state:Leader start [[{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:0 term:47 state:Candidate elect pass
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:2 term:48 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:3 term:48 state:Follower append success from [1 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader append success from [4 [{<nil> 0 0} {11 1 1} {12 1 2} {13 9 3} {14 9 4} {15 10 5} {16 19 6} {17 21 7} {18 21 8} {19 30 9} {20 30 10} {21 30 11} {22 39 12} {23 39 13} {24 39 14} {1000 39 15}]]
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 4
+[DEBUG] raft.go:324: id:1 term:48 state:Leader get hearts from 4
+[DEBUG] raft.go:324: id:3 term:48 state:Follower get hearts from 4
+[DEBUG] raft.go:324: id:4 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:2 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:1 term:48 state:Leader apply logs [{1000 39 15}]
+[DEBUG] raft.go:324: id:2 term:48 state:Follower get hearts from 1
+[DEBUG] raft.go:324: id:3 term:48 state:Follower request vote -- args.term little from 0
+[DEBUG] raft.go:324: id:4 term:48 state:Leader get hearts from 1
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:1 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:4 term:48 state:Leader logs append success
+[DEBUG] raft.go:324: id:0 term:48 state:Candidate get hearts from 1
