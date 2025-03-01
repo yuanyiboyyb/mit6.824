@@ -145,10 +145,10 @@ func (kv *KVServer)applyMsgHandlerLoop(){
 				switch op.OpType {
 				case "Put":
 					kv.kvPersist[op.Key] = op.Value
-					DPrintf("seqID:%v put key:%v,value:%v\n",op.SeqId,op.Key,op.Value)
+					DPrintf("clientID:%v put key:%v,value:%v\n",op.ClientId,op.Key,op.Value)
 				case "Append":
 					kv.kvPersist[op.Key] += op.Value
-					DPrintf("sedID:%v append key:%v,value:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
+					DPrintf("clientID:%v now:%v\n",op.ClientId,kv.kvPersist[op.Key])
 				}
 				kv.commandMap[op.ClientId] = op.SeqId
 				kv.mu.Unlock()
@@ -263,8 +263,6 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.waitChMap = make(map[int]chan Op)
 	kv.mu = sync.Mutex{}
 
-	for i:=1;i<5;i++{
-		go kv.applyMsgHandlerLoop()
-	}
+	go kv.applyMsgHandlerLoop()
 	return kv
 }
