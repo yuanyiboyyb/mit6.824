@@ -101,7 +101,7 @@ const (
     electtimemin = 300
     heartsbeatmax = 600
     heartsbeatmin = 300
-    HeartBeatInterval = 100
+    HeartBeatInterval = 200
 )
 type Logentries struct{
     Command     interface{}
@@ -250,11 +250,19 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 
 	// 保存状态和日志
 
-	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), snapshot)
+	defer rf.persist()
+	rf.mu.Lock()
+    bytes := rf.EncoderState()
+	rf.mu.Unlock()
+	rf.persister.SaveStateAndSnapshot(bytes, snapshot)
+	rf.debugPrint("len:%v",SNAP,len(rf.logs))
     rf.trimIndex(index)
+	rf.debugPrint("len:%v",SNAP,len(rf.logs))
 }
 func (rf *Raft) trimIndex(index int) {
-	snapShotIndex := rf.getFirstLog().Index
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	snapShotIndex := rf.GetFirstLog().Index
 	if snapShotIndex >= index {
 		return
 	}
@@ -306,8 +314,10 @@ type RequestVoteReply struct {
 const (
 	VOTE = 0
 	LOG  = 1
-	VOTEFLAG = true
-	LOGFLAG  = true
+	SNAP = 2
+	VOTEFLAG = false
+	LOGFLAG  = false
+	SNAPFLAG = true
 )
   func (rf *Raft)debugPrint(format string,flag int,args ...interface{}) {
 	if debugMode && debugLogger != nil {
@@ -322,8 +332,7 @@ const (
         case Candidate:
             stateStr = "Candidate"
         }
-  
-		if ((flag == VOTE && VOTEFLAG) || (flag == LOG && LOGFLAG)){
+		if ((flag == VOTE && VOTEFLAG) || (flag == LOG && LOGFLAG) || (flag == SNAP && SNAPFLAG)){
 			debugLogger.Printf("id:%v term:%v state:%v "+format+"\n",append([]interface{}{rf.me, term,stateStr}, args...)...)
 		}
 	}
@@ -582,7 +591,7 @@ func (rf *Raft)SendInstallSnapshotRpc(id int,args *InstallSnapshotArgs,reply *In
 		rf.ConvertToFollower(reply.Term)
 	}
 
-    snapShotIndex := rf.getFirstLog().Index
+    snapShotIndex := rf.GetFirstLog().Index
  
     if rf.term != args.Term || rf.state != Leader || args.LastIncludedIndex != snapShotIndex {
 		return
@@ -630,6 +639,7 @@ func (rf *Raft) SendAppendEntries(id int, args *AppendEntriesArgs, reply *Append
 			}else if reply.ConflictIndex ==-1{
 				rf.MatchIndex[id] = max(templastId,rf.MatchIndex[id])
                 rf.NextIndex[id] = max(rf.MatchIndex[id]+1,rf.NextIndex[id])
+				rf.NextIndex[id] = min(rf.NextIndex[id],rf.getLastLog().Index+1)
 				rf.checkCommitIndex(rf.MatchIndex[id])
 				rf.debugPrint("logs append success",LOG)
 			}else if reply.ConflictTerm == -1{
@@ -652,6 +662,9 @@ func (rf *Raft) SendAppendEntries(id int, args *AppendEntriesArgs, reply *Append
     } 
 }
 func (rf *Raft)checkCommitIndex(index int){
+    if index <= rf.CommitIndex{
+        return
+    }
 	count := 1
     for j := range rf.peers {
         if rf.MatchIndex[j] >= index && j != rf.me{
@@ -659,8 +672,9 @@ func (rf *Raft)checkCommitIndex(index int){
         }
     }
     if 2*count > len(rf.peers) { // 超过半数节点存储该日志
-        rf.CommitIndex = max(rf.CommitIndex,index)
-		rf.debugPrint("commitindex %v",rf.CommitIndex)
+        rf.CommitIndex = index
+        go rf.SendAllAppendEntries()
+		rf.debugPrint("commitindex %v",LOG,rf.CommitIndex)
     }
 }
 /* func (rf *Raft)checkCommitIndex(){
@@ -682,7 +696,6 @@ func (rf *Raft)checkCommitIndex(index int){
     defer rf.logsMutex.RUnlock()
 
 } */
-
 func (rf *Raft) SendAllAppendEntries(){
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
@@ -692,14 +705,14 @@ func (rf *Raft) SendAllAppendEntries(){
         if server != rf.me && rf.state == Leader {
           
             nextId:=rf.NextIndex[server]
-            firstlog:=rf.getFirstLog()
+            firstlog:=rf.GetFirstLog()
             if nextId > firstlog.Index{
                 nextId=nextId-firstlog.Index
                 prelog:=rf.logs[nextId-1]
-			
                 logs := make([]Logentries, len(rf.logs)-nextId)
-                copy(logs, rf.logs[nextId:]) // 拷贝尚未同步的日志
-		
+				if len(rf.logs)-nextId > 0{
+                	copy(logs, rf.logs[nextId:]) // 拷贝尚未同步的日志
+				}
                 templastId :=  rf.getLastLog().Index
                 go func(id int) {
              
@@ -757,20 +770,21 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		// 如果当前节点的任期小于请求的任期，或者任期相等（收到了leader的请求）则转换为追随者
         rf.ConvertToFollower(args.Term)
 	}
-
+	if rf.GetFirstLog().Index >=args.LastIncludedIndex{
+		return
+	}
 
 	// 发送AppendEntriesReply，确认快照接收成功
 	rf.appendEntriesChan <- struct{}{}
 	// 如果请求中的快照最后包含的索引小于等于当前节点的已提交索引，则无需处理
 
-	if args.LastIncludedIndex <= rf.CommitIndex {
+	/* if args.LastIncludedIndex <= rf.CommitIndex {
 		return
-	}
+	} */
 	// 根据快照信息更新日志
-   
-	rf.CommitIndex = args.LastIncludedIndex
-	rf.LastApplied = args.LastIncludedIndex
-	rf.debugPrintlog("install shot")
+	rf.debugPrint("len:%v",SNAP,len(rf.logs))
+	rf.CommitIndex = max(args.LastIncludedIndex,rf.CommitIndex)
+	rf.LastApplied = max(args.LastIncludedIndex,rf.LastApplied)
 	if rf.getLastLog().Index <= args.LastIncludedIndex {
 		// 如果所有旧的日志都已被快照覆盖，创建新的日志条目
 		rf.logs = []Logentries{{
@@ -780,7 +794,7 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		}}
 	} else {
 		// 否则，保留快照之后的日志条目，并更新第一个日志条目的信息
-		snapIndex := rf.getFirstLog().Index
+		snapIndex := rf.GetFirstLog().Index
 		newLogs := make([]Logentries, rf.getLastLog().Index-args.LastIncludedIndex+1)
 		copy(newLogs, rf.logs[args.LastIncludedIndex-snapIndex:])
 		rf.logs = newLogs
@@ -788,6 +802,7 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		rf.logs[0].Term = args.LastIncludedTerm
 		rf.logs[0].Index = args.LastIncludedIndex
 	}
+	rf.debugPrint("len:%v",SNAP,len(rf.logs))
 	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), args.Data)
 	// 异步发送ApplyMsg，通知应用层处理快照
 	go func() {
@@ -825,7 +840,7 @@ func (rf *Raft) AppendEntriesHandler(args *AppendEntriesArgs, reply *AppendEntri
         rf.state = Follower
 	}
 	lastlog:=rf.getLastLog()    
-	firstlog:=rf.getFirstLog()
+	firstlog:=rf.GetFirstLog()
 	if args.PrevLogIndex > lastlog.Index{
 		reply.Success = true
 		reply.ConflictIndex = lastlog.Index
@@ -856,6 +871,7 @@ func (rf *Raft) AppendEntriesHandler(args *AppendEntriesArgs, reply *AppendEntri
 					}
 				}
 			}
+		
 			nowlastlog := rf.getLastLog()
 			rf.CommitIndex = min(nowlastlog.Index, args.LeaderCommit)
 			rf.debugPrint("commit index %v",LOG,rf.CommitIndex)
@@ -969,7 +985,7 @@ func (rf *Raft) ticker() {
 // Make() must return quickly, so it should start goroutines
 // for any long-running work.
 //
-func (rf *Raft)getFirstLog() Logentries{
+func (rf *Raft)GetFirstLog() Logentries{
     return rf.logs[0]
 }
 func (rf *Raft) doApplyWork() {
@@ -984,10 +1000,10 @@ func (rf *Raft) applyLog() {
 	if rf.CommitIndex <= rf.LastApplied || rf.getLogs(rf.CommitIndex).Term != rf.term{
 		return
 	}
-	if rf.logs[rf.CommitIndex-rf.getFirstLog().Index].Term != rf.term{
+	if rf.logs[rf.CommitIndex-rf.GetFirstLog().Index].Term != rf.term{
 		return
 	}
-    snapShotIndex := rf.getFirstLog().Index
+    snapShotIndex := rf.GetFirstLog().Index
 	copyLogs := make([]Logentries, rf.CommitIndex-rf.LastApplied)
 	copy(copyLogs, rf.logs[rf.LastApplied-snapShotIndex+1:rf.CommitIndex-snapShotIndex+1])
     rf.debugPrint("apply logs %v",LOG,copyLogs)

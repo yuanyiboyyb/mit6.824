@@ -1,6 +1,7 @@
 package kvraft
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"os"
@@ -67,6 +68,10 @@ type KVServer struct {
 	commandMap map[int64]int
 	waitChMap map[int]chan Op
 	kvPersist map[string]string 
+
+
+    lastIncludeIndex int          
+	persister        *raft.Persister
 }
 
 func (kv *KVServer) getWaitCh(index int) chan Op {
@@ -130,7 +135,46 @@ func (kv *KVServer) ifDuplicate(clientId int64, seqId int) bool {
 	}
 	return seqId <= lastSeqId
 }
+func (kv *KVServer) isNeedSnapshot() bool {
+	if kv.maxraftstate == -1 {
+		return false
+	}
+	len := kv.persister.RaftStateSize()
+	return len >= kv.maxraftstate
+}
+func (kv *KVServer) makeSnapshot(index int) {
+/* 	_, isleader := kv.rf.GetState()
+	if !isleader {
+		return
+	} */
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+	e.Encode(kv.kvPersist)
+	e.Encode(kv.commandMap)
+	snapshot := w.Bytes()
+	kv.rf.Snapshot(index, snapshot)
+}
+func (kv *KVServer) decodeSnapshot(index int, snapshot []byte) {
 
+	// 这里必须判空，因为当节点第一次启动时，持久化数据为空，如果还强制读取数据会报错
+	if snapshot == nil || len(snapshot) < 1 {
+		return
+	}
+
+	r := bytes.NewBuffer(snapshot)
+	d := labgob.NewDecoder(r)
+
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+	kv.lastIncludeIndex = index
+
+	if d.Decode(&kv.kvPersist) != nil || d.Decode(&kv.commandMap) != nil {
+		panic("error in parsing snapshot")
+	}
+
+}
 func (kv *KVServer)applyMsgHandlerLoop(){
 	for{
 		if kv.killed(){
@@ -151,13 +195,18 @@ func (kv *KVServer)applyMsgHandlerLoop(){
 					DPrintf("clientID:%v now:%v\n",op.ClientId,kv.kvPersist[op.Key])
 				}
 				kv.commandMap[op.ClientId] = op.SeqId
+                if kv.isNeedSnapshot(){
+                    go kv.makeSnapshot(msg.CommandIndex)
+                }
 				kv.mu.Unlock()
 			}
 			if _, isLead := kv.rf.GetState(); isLead {
 				kv.getWaitCh(index) <- op
 			}
-  
-		}
+		}else if msg.SnapshotValid{
+            kv.decodeSnapshot(msg.SnapshotIndex, msg.Snapshot)
+			DPrintf("----- install\n")
+        }
 	}
 }
 
@@ -251,7 +300,6 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv := new(KVServer)
 	kv.me = me
 	kv.maxraftstate = maxraftstate
-
 	// You may need initialization code here.
 
 	kv.applyCh =  make(chan raft.ApplyMsg, 100)
@@ -261,8 +309,12 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.commandMap = make(map[int64]int)
 	kv.kvPersist = make(map[string]string)
 	kv.waitChMap = make(map[int]chan Op)
+
+    kv.persister = persister
+    kv.lastIncludeIndex = 0
 	kv.mu = sync.Mutex{}
 
+	kv.decodeSnapshot(kv.rf.GetFirstLog().Index,kv.persister.ReadSnapshot())
 	go kv.applyMsgHandlerLoop()
 	return kv
 }
