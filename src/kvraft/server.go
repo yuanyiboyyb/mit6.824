@@ -141,10 +141,6 @@ func (kv *KVServer) isNeedSnapshot() bool {
 	return len >= kv.maxraftstate
 }
 func (kv *KVServer) makeSnapshot(index int) {
- 	_, isleader := kv.rf.GetState()
-	if !isleader {
-		return
-	} 
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
 	kv.mu.Lock()

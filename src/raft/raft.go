@@ -253,7 +253,6 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	defer 	rf.mu.Unlock()
 	rf.trimIndex(index)
 	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), snapshot)
-	go rf.SendAllsnapshot()
 }
 func (rf *Raft) trimIndex(index int) {
 	snapShotIndex := rf.GetFirstLog().Index
@@ -691,27 +690,7 @@ func (rf *Raft)checkCommitIndex(index int){
     defer rf.logsMutex.RUnlock()
 
 } */
-func (rf *Raft)SendAllsnapshot(){
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
-	firstlog:=rf.GetFirstLog()
-	for server := range rf.peers {
-		if server != rf.me && rf.state == Leader {
-			args := &InstallSnapshotArgs{
-				Term:              rf.term,
-				LeaderId:          rf.me,
-				LastIncludedIndex: firstlog.Index, // 快照保存的最后一条日志的索引
-				LastIncludedTerm:  firstlog.Term,  // 快照保存的最后一条日志的任期
-				Data:              rf.persister.ReadSnapshot(),
-			}
-			
-			go func(id int, args *InstallSnapshotArgs) {
-				reply := &InstallSnapshotReply{}
-				rf.SendInstallSnapshotRpc(id, args, reply)
-			}(server, args)
-		}
-	}
-}
+
 func (rf *Raft) SendAllAppendEntries(){
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
@@ -794,20 +773,24 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 	rf.appendEntriesChan <- struct{}{}
 	// 如果请求中的快照最后包含的索引小于等于当前节点的已提交索引，则无需处理
 
-	/* if args.LastIncludedIndex <= rf.CommitIndex {
-		return
-	} */
-	// 根据快照信息更新日志
-	rf.debugPrint("len:%v",SNAP,len(rf.logs))
-	rf.CommitIndex = max(args.LastIncludedIndex,rf.CommitIndex)
-	rf.LastApplied = max(args.LastIncludedIndex,rf.LastApplied)
-	if rf.getLastLog().Index < args.LastIncludedIndex {
+	lastlogIndex:=rf.getLastLog().Index
+	snapIndex := rf.GetFirstLog().Index
+	if rf.LastApplied < args.LastIncludedIndex  || lastlogIndex < args.LastIncludedIndex {
 		// 如果所有旧的日志都已被快照覆盖，创建新的日志条目
-		rf.logs = []Logentries{{
-			Command: nil,
-			Term:    args.LastIncludedTerm,
-			Index:   args.LastIncludedIndex,
-		}}
+		if lastlogIndex < args.LastIncludedIndex{
+			rf.logs = []Logentries{{
+				Command: nil,
+				Term:    args.LastIncludedTerm,
+				Index:   args.LastIncludedIndex,
+			}}
+		}else{
+			newLogs := make([]Logentries, lastlogIndex-args.LastIncludedIndex+1)
+			copy(newLogs, rf.logs[args.LastIncludedIndex-snapIndex:])
+			rf.logs = newLogs
+			rf.logs[0].Command = nil
+			rf.logs[0].Term = args.LastIncludedTerm
+			rf.logs[0].Index = args.LastIncludedIndex
+		}
 		go func() {
 			rf.applyCh <- ApplyMsg{
 				SnapshotValid: true,
@@ -819,7 +802,6 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		DPrintf("install over\n")
 	} else {
 		// 否则，保留快照之后的日志条目，并更新第一个日志条目的信息
-		snapIndex := rf.GetFirstLog().Index
 		newLogs := make([]Logentries, rf.getLastLog().Index-args.LastIncludedIndex+1)
 		copy(newLogs, rf.logs[args.LastIncludedIndex-snapIndex:])
 		rf.logs = newLogs
@@ -828,6 +810,8 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		rf.logs[0].Index = args.LastIncludedIndex
 		DPrintf("install  no over\n")
 	}
+	rf.CommitIndex = max(args.LastIncludedIndex,rf.CommitIndex)
+	rf.LastApplied = max(args.LastIncludedIndex,rf.LastApplied)
 	rf.debugPrint("len:%v",SNAP,len(rf.logs))
 	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), args.Data)
 	// 异步发送ApplyMsg，通知应用层处理快照
@@ -879,7 +863,6 @@ func (rf *Raft) AppendEntriesHandler(args *AppendEntriesArgs, reply *AppendEntri
 				reply.Success = false
 				rf.debugPrint("get hearts from %v",LOG,args.LeaderId)
 			}else{
-				rf.logs = append(rf.logs[:args.PrevLogIndex+1-firstlog.Index],args.Entries... ) 
 				for i:=0;i<len(args.Entries);i++{
 					index := i+args.PrevLogIndex+1-firstlog.Index
 					if index >= len(rf.logs) || rf.logs[index].Term != args.Entries[i].Term{
@@ -1014,16 +997,19 @@ func (rf *Raft) doApplyWork() {
 }
 func (rf *Raft) applyLog() {
 	rf.mu.Lock()
-	defer rf.mu.Unlock()
 	if rf.CommitIndex <= rf.LastApplied || rf.getLogs(rf.CommitIndex).Term != rf.term{
+		rf.mu.Unlock()
 		return
 	}
 	if rf.logs[rf.CommitIndex-rf.GetFirstLog().Index].Term != rf.term{
+		rf.mu.Unlock()
 		return
 	}
     snapShotIndex := rf.GetFirstLog().Index
 	copyLogs := make([]Logentries, rf.CommitIndex-rf.LastApplied)
 	copy(copyLogs, rf.logs[rf.LastApplied-snapShotIndex+1:rf.CommitIndex-snapShotIndex+1])
+	rf.LastApplied = rf.CommitIndex
+	rf.mu.Unlock()
     rf.debugPrint("apply logs %v",LOG,copyLogs)
 	// 这里不要加锁 2D测试函数会死锁
 	// 遍历从lastApplied+1到commitIndex的所有日志条目
@@ -1035,8 +1021,6 @@ func (rf *Raft) applyLog() {
 			CommandIndex: logEntity.Index,   // 新提交日志条目的索引
 		}
 	}
-    rf.LastApplied = rf.CommitIndex
-	rf.persist()
 }
 
 
