@@ -1,0 +1,31 @@
+Test: InstallSnapshot RPC (3B) ...
+  ... Passed --   4.3  3  4988   63
+Test: snapshot size is reasonable (3B) ...
+  ... Passed --  25.1  3  9220  800
+Test: ops complete fast enough (3B) ...
+  ... Passed --  31.2  3 10434    0
+Test: restarts, snapshots, one client (3B) ...
+  ... Passed --  19.3  5 28708  480
+Test: restarts, snapshots, many clients (3B) ...
+--- FAIL: TestSnapshotRecoverManyClients3B (6.95s)
+    test_test.go:144: 17 missing element x 17 68 y in Append result x 17 0 yx 17 1 yx 17 2 yx 17 3 yx 17 4 yx 17 5 yx 17 6 yx 17 7 yx 17 8 yx 17 9 yx 17 10 yx 17 11 yx 17 12 yx 17 13 yx 17 14 yx 17 15 yx 17 16 yx 17 17 yx 17 18 yx 17 19 yx 17 20 yx 17 21 yx 17 22 yx 17 23 yx 17 24 yx 17 25 yx 17 26 yx 17 27 yx 17 28 yx 17 29 yx 17 30 yx 17 31 yx 17 32 yx 17 33 yx 17 34 yx 17 35 yx 17 36 yx 17 37 yx 17 38 yx 17 39 yx 17 40 yx 17 41 yx 17 42 yx 17 43 yx 17 44 yx 17 45 yx 17 46 yx 17 47 yx 17 48 yx 17 49 yx 17 50 yx 17 51 yx 17 52 yx 17 53 yx 17 54 yx 17 55 yx 17 56 yx 17 57 yx 17 58 yx 17 59 yx 17 60 yx 17 61 yx 17 62 yx 17 63 yx 17 64 yx 17 65 yx 17 66 yx 17 67 yx 17 69 yx 17 70 yx 17 71 yx 17 72 yx 17 73 yx 17 74 yx 17 75 yx 17 76 yx 17 77 yx 17 78 yx 17 79 yx 17 80 yx 17 81 yx 17 82 yx 17 83 yx 17 84 y
+Test: unreliable net, snapshots, many clients (3B) ...
+  ... Passed --  16.3  5 11276 1048
+Test: unreliable net, restarts, snapshots, many clients (3B) ...
+  ... Passed --  21.0  5 12445 1147
+Test: unreliable net, restarts, partitions, snapshots, many clients (3B) ...
+info: wrote history visualization to /tmp/273299616.html
+--- FAIL: TestSnapshotUnreliableRecoverConcurrentPartition3B (28.15s)
+    test_test.go:293: get wrong value, key 1, wanted:
+        x 1 0 yx 1 1 yx 1 2 yx 1 3 yx 1 4 yx 1 5 yx 1 6 yx 1 7 y
+        , got
+        x 1 0 yx 1 1 yx 1 2 yx 1 3 yx 1 4 yx 1 5 yx 1 6 y
+    test_test.go:126: failure
+    test_test.go:382: history is not linearizable
+Test: unreliable net, restarts, partitions, snapshots, random keys, many clients (3B) ...
+info: wrote history visualization to /tmp/2660290002.html
+--- FAIL: TestSnapshotUnreliableRecoverConcurrentPartitionLinearizable3B (31.66s)
+    test_test.go:382: history is not linearizable
+FAIL
+exit status 1
+FAIL	6.824/kvraft	184.085s

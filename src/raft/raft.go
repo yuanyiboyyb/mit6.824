@@ -249,21 +249,16 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
 
 	// 保存状态和日志
-
-	defer rf.persist()
 	rf.mu.Lock()
-    bytes := rf.EncoderState()
-	rf.mu.Unlock()
-	rf.persister.SaveStateAndSnapshot(bytes, snapshot)
-	rf.debugPrint("len:%v",SNAP,len(rf.logs))
-    rf.trimIndex(index)
-	rf.debugPrint("len:%v",SNAP,len(rf.logs))
+	defer 	rf.mu.Unlock()
+	rf.trimIndex(index)
+	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), snapshot)
+	go rf.SendAllsnapshot()
 }
 func (rf *Raft) trimIndex(index int) {
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
 	snapShotIndex := rf.GetFirstLog().Index
-	if snapShotIndex >= index {
+	lastindex := rf.getLastLog().Index
+	if snapShotIndex >= index || index > lastindex{
 		return
 	}
 	// rf.logs[0]保留快照的lastLog，快照中包含的最后一条日志也会被保留下来，而不会被修剪掉
@@ -295,7 +290,7 @@ type RequestVoteReply struct {
     Term      int
 }
  var (
-	debugMode  = false
+	debugMode  = true
 	debugLogger *log.Logger
 ) 
 
@@ -696,6 +691,27 @@ func (rf *Raft)checkCommitIndex(index int){
     defer rf.logsMutex.RUnlock()
 
 } */
+func (rf *Raft)SendAllsnapshot(){
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	firstlog:=rf.GetFirstLog()
+	for server := range rf.peers {
+		if server != rf.me && rf.state == Leader {
+			args := &InstallSnapshotArgs{
+				Term:              rf.term,
+				LeaderId:          rf.me,
+				LastIncludedIndex: firstlog.Index, // 快照保存的最后一条日志的索引
+				LastIncludedTerm:  firstlog.Term,  // 快照保存的最后一条日志的任期
+				Data:              rf.persister.ReadSnapshot(),
+			}
+			
+			go func(id int, args *InstallSnapshotArgs) {
+				reply := &InstallSnapshotReply{}
+				rf.SendInstallSnapshotRpc(id, args, reply)
+			}(server, args)
+		}
+	}
+}
 func (rf *Raft) SendAllAppendEntries(){
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
@@ -785,13 +801,22 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 	rf.debugPrint("len:%v",SNAP,len(rf.logs))
 	rf.CommitIndex = max(args.LastIncludedIndex,rf.CommitIndex)
 	rf.LastApplied = max(args.LastIncludedIndex,rf.LastApplied)
-	if rf.getLastLog().Index <= args.LastIncludedIndex {
+	if rf.getLastLog().Index < args.LastIncludedIndex {
 		// 如果所有旧的日志都已被快照覆盖，创建新的日志条目
 		rf.logs = []Logentries{{
 			Command: nil,
 			Term:    args.LastIncludedTerm,
 			Index:   args.LastIncludedIndex,
 		}}
+		go func() {
+			rf.applyCh <- ApplyMsg{
+				SnapshotValid: true,
+				Snapshot:      args.Data,
+				SnapshotIndex: args.LastIncludedIndex,
+				SnapshotTerm:  args.LastIncludedTerm,
+			}
+		}()
+		DPrintf("install over\n")
 	} else {
 		// 否则，保留快照之后的日志条目，并更新第一个日志条目的信息
 		snapIndex := rf.GetFirstLog().Index
@@ -801,18 +826,11 @@ func (rf *Raft) InstallSnapshotHandler(args *InstallSnapshotArgs, reply *Install
 		rf.logs[0].Command = nil
 		rf.logs[0].Term = args.LastIncludedTerm
 		rf.logs[0].Index = args.LastIncludedIndex
+		DPrintf("install  no over\n")
 	}
 	rf.debugPrint("len:%v",SNAP,len(rf.logs))
 	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), args.Data)
 	// 异步发送ApplyMsg，通知应用层处理快照
-	go func() {
-		rf.applyCh <- ApplyMsg{
-			SnapshotValid: true,
-			Snapshot:      args.Data,
-			SnapshotIndex: args.LastIncludedIndex,
-			SnapshotTerm:  args.LastIncludedTerm,
-		}
-	}()
 }
 func min(a, b int) int {
     if a < b {

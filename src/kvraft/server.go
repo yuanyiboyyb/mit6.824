@@ -126,8 +126,6 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	}
 }
 func (kv *KVServer) ifDuplicate(clientId int64, seqId int) bool {
-	kv.mu.Lock()
-	defer kv.mu.Unlock()
 
 	lastSeqId, exist := kv.commandMap[clientId]
 	if !exist {
@@ -143,10 +141,10 @@ func (kv *KVServer) isNeedSnapshot() bool {
 	return len >= kv.maxraftstate
 }
 func (kv *KVServer) makeSnapshot(index int) {
-/* 	_, isleader := kv.rf.GetState()
+ 	_, isleader := kv.rf.GetState()
 	if !isleader {
 		return
-	} */
+	} 
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
 	kv.mu.Lock()
@@ -173,6 +171,7 @@ func (kv *KVServer) decodeSnapshot(index int, snapshot []byte) {
 	if d.Decode(&kv.kvPersist) != nil || d.Decode(&kv.commandMap) != nil {
 		panic("error in parsing snapshot")
 	}
+	DPrintf("----- install\n")
 
 }
 func (kv *KVServer)applyMsgHandlerLoop(){
@@ -184,28 +183,29 @@ func (kv *KVServer)applyMsgHandlerLoop(){
 		if msg.CommandValid{
 			index:=msg.CommandIndex
 			op:=msg.Command.(Op)
+			kv.mu.Lock()
 			if !kv.ifDuplicate(op.ClientId, op.SeqId) {
-				kv.mu.Lock()
 				switch op.OpType {
 				case "Put":
 					kv.kvPersist[op.Key] = op.Value
 					DPrintf("clientID:%v put key:%v,value:%v\n",op.ClientId,op.Key,op.Value)
 				case "Append":
+					DPrintf("seqid:%v append key:%v before:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
+					DPrintf("clientID:%v append key:%v +op:%v\n",op.ClientId,op.Key,op.Value)
 					kv.kvPersist[op.Key] += op.Value
-					DPrintf("clientID:%v now:%v\n",op.ClientId,kv.kvPersist[op.Key])
+					DPrintf("seqid:%v append key:%v now:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
 				}
 				kv.commandMap[op.ClientId] = op.SeqId
                 if kv.isNeedSnapshot(){
                     go kv.makeSnapshot(msg.CommandIndex)
                 }
-				kv.mu.Unlock()
 			}
+			kv.mu.Unlock()
 			if _, isLead := kv.rf.GetState(); isLead {
 				kv.getWaitCh(index) <- op
 			}
 		}else if msg.SnapshotValid{
             kv.decodeSnapshot(msg.SnapshotIndex, msg.Snapshot)
-			DPrintf("----- install\n")
         }
 	}
 }
@@ -237,7 +237,7 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	}()
 
 	// 设置超时ticker
-	timer := time.NewTicker(150 * time.Millisecond)
+	timer := time.NewTicker(200 * time.Millisecond)
 	select {
 	case replyOp := <-ch:
 		//fmt.Printf("[ ----Server[%v]----] : receive a %vAsk :%+v,Op:%+v\n", kv.me, args.Op, args, replyOp)
@@ -249,7 +249,6 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 		}
 
 	case <-timer.C:
-		DPrintf("111111\n")
 		reply.Err = ErrWrongLeader
 	}
 
@@ -302,7 +301,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.maxraftstate = maxraftstate
 	// You may need initialization code here.
 
-	kv.applyCh =  make(chan raft.ApplyMsg, 100)
+	kv.applyCh =  make(chan raft.ApplyMsg, 1200)
 	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
 
 	// You may need initialization code here.
