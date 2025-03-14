@@ -289,7 +289,7 @@ type RequestVoteReply struct {
     Term      int
 }
  var (
-	debugMode  = true
+	debugMode  = false
 	debugLogger *log.Logger
 ) 
 
