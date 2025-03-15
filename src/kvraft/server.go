@@ -2,9 +2,9 @@ package kvraft
 
 import (
 	"bytes"
-	"fmt"
+	/* "fmt"
 	"log"
-	"os"
+	"os" */
 	"sync"
 	"sync/atomic"
 	"time"
@@ -21,8 +21,8 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 		log.Printf(format, a...)
 	}
 	return
-}  */ 
-func init() {
+}  */
+/* func init() {
     if debugMode {
 	    logFile, err := os.OpenFile("debug1.log", os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0666)
 	    if err != nil {
@@ -32,7 +32,7 @@ func init() {
 	    // 创建 Logger
 	    debugLogger = log.New(logFile, "[DEBUG] ", log.Lshortfile)
     }
-} 
+}
 const (
     debugMode = true
 )
@@ -41,7 +41,7 @@ func DPrintf(format string,args ...interface{}) {
 	if debugMode && debugLogger != nil {
 		debugLogger.Printf(format, args...)
 	}
-}
+} */
 type Op struct {
 	// Your definitions here.
 	// Field names must start with capital letters,
@@ -117,7 +117,7 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 			reply.Err = OK
 			kv.mu.Lock()
 			reply.Value = kv.kvPersist[args.Key] 
-			DPrintf("seqID:%v get key:%v,value:%v\n",op.SeqId,args.Key,reply.Value)
+			//DPrintf("seqID:%v get key:%v,value:%v\n",op.SeqId,args.Key,reply.Value)
 			kv.mu.Unlock()
 			return
 		}
@@ -167,7 +167,7 @@ func (kv *KVServer) decodeSnapshot(index int, snapshot []byte) {
 	if d.Decode(&kv.kvPersist) != nil || d.Decode(&kv.commandMap) != nil {
 		panic("error in parsing snapshot")
 	}
-	DPrintf("----- install\n")
+	//DPrintf("----- install\n")
 
 }
 func (kv *KVServer)applyMsgHandlerLoop(){
@@ -184,12 +184,12 @@ func (kv *KVServer)applyMsgHandlerLoop(){
 				switch op.OpType {
 				case "Put":
 					kv.kvPersist[op.Key] = op.Value
-					DPrintf("clientID:%v put key:%v,value:%v\n",op.ClientId,op.Key,op.Value)
+					//DPrintf("clientID:%v put key:%v,value:%v\n",op.ClientId,op.Key,op.Value)
 				case "Append":
-					DPrintf("seqid:%v append key:%v before:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
-					DPrintf("clientID:%v append key:%v +op:%v\n",op.ClientId,op.Key,op.Value)
+					//DPrintf("seqid:%v append key:%v before:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
+					//DPrintf("clientID:%v append key:%v +op:%v\n",op.ClientId,op.Key,op.Value)
 					kv.kvPersist[op.Key] += op.Value
-					DPrintf("seqid:%v append key:%v now:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
+					//DPrintf("seqid:%v append key:%v now:%v\n",op.SeqId,op.Key,kv.kvPersist[op.Key])
 				}
 				kv.commandMap[op.ClientId] = op.SeqId
                 if kv.isNeedSnapshot(){

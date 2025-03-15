@@ -20,7 +20,7 @@ type ShardCtrler struct {
 	dead 	int32
 
 	waiCh map[int]chan Result
-	historyMap map[int64] Result
+	historyMap map[int64] int64
 
 	// Your data here.
 
@@ -69,18 +69,22 @@ func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
 		sc.mu.Unlock()
 	}()
 
-	timer:=time.NewTicker(100*time.Millisecond)
+	timer:=time.NewTicker(200*time.Millisecond)
 	defer timer.Stop()
+	DPrintf("%v start",opargs.OpType)
 	select{
 	case<-timer.C:
 		res.Err = ErrWrongLeader
+		DPrintf("%v lost\n",opargs.OpType)
 		return
 	case msg := <-newch:
 		if msg.LastSeq == opargs.Seq && msg.Id == opargs.Id{
 			res = msg
+			DPrintf("%v success\n",opargs.OpType)
 			return
 		}else {
 			res.Err = ErrWrongLeader
+			DPrintf("%v wrong\n",opargs.OpType)
 			return
 		}
 	}
@@ -135,7 +139,7 @@ func (sc *ShardCtrler) Query(args *QueryArgs, reply *MyReply) {
 		reply.Err = ErrWrongLeader
 		return
 	}
-	opArgs := Op{OpType: OPMove, Seq: args.Seq, Id: args.Id}
+	opArgs := Op{OpType: OPQuery, Seq: args.Seq, Id: args.Id, Num:args.Num}
 	res := sc.HandleOp(opArgs)
 	reply.Err = res.Err
 	reply.Config = res.Config
@@ -165,8 +169,13 @@ func (sc *ShardCtrler) killed() bool {
 }
 
 func (sc *ShardCtrler) getaverage(gids []int,need []int) [NShards]int{
-	var shared [NShards]int
-	shared=sc.configs[len(sc.configs)-1].Shards
+	shared:=sc.configs[len(sc.configs)-1].Shards
+	if len(gids) == 0{
+		for i:=range shared{
+			shared[i]=0
+		}
+		return shared
+	}
 	average:=NShards/len(gids)
 	over:=NShards%len(gids)
 	var num int
@@ -179,15 +188,16 @@ func (sc *ShardCtrler) getaverage(gids []int,need []int) [NShards]int{
 		}else{
 			flag = 0
 		}
-		if len(sc.gidshares) > average+flag{
-			need=append(need,sc.gidshares[gid][average+1:]...)
-			sc.gidshares[gid]=sc.gidshares[gid][:average+1]
+		if len(sc.gidshares[gid]) > average+flag{
+			need=append(need,sc.gidshares[gid][average+flag:]...)
+			sc.gidshares[gid]=sc.gidshares[gid][:average+flag]
 		}else{
-			num = average+1-len(sc.gidshares[gid])
+			num = average+flag-len(sc.gidshares[gid])
 			for _,change=range(need[len(need)-num:]){
 				shared[change]=gid
 			}
 			sc.gidshares[gid]=append(sc.gidshares[gid], need[len(need)-num:]...)
+			need=need[:len(need)-num]
 		}
 	}
 	return shared
@@ -195,6 +205,7 @@ func (sc *ShardCtrler) getaverage(gids []int,need []int) [NShards]int{
 
 func(sc *ShardCtrler)CreateNewConfig(Servers map[int][]string)Config{
 	newconfig := Config{}
+	newconfig.Groups = make(map[int][]string)
 	gids := make([]int, 0)
 	for key,value:=range sc.configs[len(sc.configs)-1].Groups{
 		newconfig.Groups[key]=value
@@ -207,24 +218,34 @@ func(sc *ShardCtrler)CreateNewConfig(Servers map[int][]string)Config{
 	}
 
 	sort.Slice(gids,func(i,j int) bool{
-		return len(sc.gidshares[gids[i]])>len(sc.gidshares[gids[j]])
+		return (len(sc.gidshares[gids[i]])>len(sc.gidshares[gids[j]])) || (len(sc.gidshares[gids[i]]) == len(sc.gidshares[gids[j]]) && gids[i] < gids[j])
 	})
+	DPrintf("id:%v gids:%v",sc.me,gids)
 	need:=make([]int,0)
+	for index,_:=range sc.configs[len(sc.configs)-1].Shards{
+		if  sc.configs[len(sc.configs)-1].Shards[index]== 0{
+			need=append(need, index)
+		}
+	}
 	newconfig.Shards = sc.getaverage(gids,need)
 	newconfig.Num = sc.configs[len(sc.configs)-1].Num+1
 	return newconfig
 }
 func(sc *ShardCtrler)RemoveGidServers(Gids []int)Config{
 	newconfig := Config{}
+	newconfig.Groups = make(map[int][]string)
 	gids:=make([]int,0)
 	need:=make([]int,0)
-	sort.Slice(Gids,func(i,j int) bool{
-		return Gids[i]<Gids[j]
-	})
-	i:=0
+	var flag bool
 	for key,value :=range sc.configs[len(sc.configs)-1].Groups{
-		if Gids[i] == key{
-			i++
+		flag = false
+		for _,i:= range Gids{
+			if i == key{
+				flag = true
+				break
+			} 
+		} 
+		if flag {
 			need=append(need, sc.gidshares[key]...)
 			delete(sc.gidshares,key)
 		}else{
@@ -233,8 +254,12 @@ func(sc *ShardCtrler)RemoveGidServers(Gids []int)Config{
 		}
 	}
 	sort.Slice(gids,func(i,j int) bool{
-		return len(sc.gidshares[gids[i]])>len(sc.gidshares[gids[j]])
+		return (len(sc.gidshares[gids[i]])>len(sc.gidshares[gids[j]])) || (len(sc.gidshares[gids[i]]) == len(sc.gidshares[gids[j]]) && gids[i] < gids[j])
 	})
+	sort.Slice(need,func(i,j int) bool{
+		return need[i]>need[j]
+	})
+	DPrintf("id:%v gids:%v",sc.me,gids)
 	newconfig.Shards = sc.getaverage(gids,need)
 	newconfig.Num = sc.configs[len(sc.configs)-1].Num+1
 	return newconfig
@@ -242,13 +267,18 @@ func(sc *ShardCtrler)RemoveGidServers(Gids []int)Config{
 
 func(sc *ShardCtrler)MoveShard2Gid(shared int,gid int)Config{
 	newconfig := Config{}
+	newconfig.Groups = make(map[int][]string)
 	Bgid:=sc.configs[len(sc.configs)-1].Shards[shared]
-	for index,value := range sc.gidshares[Bgid]{
-		if value == shared{
-			sc.gidshares[Bgid]=append(sc.gidshares[Bgid][:index],sc.gidshares[Bgid][index+1:]... )
-			sc.gidshares[gid]=append(sc.gidshares[gid], shared)
-			break
+	if Bgid != 0{
+		for index,value := range sc.gidshares[Bgid]{
+			if value == shared{
+				sc.gidshares[Bgid]=append(sc.gidshares[Bgid][:index],sc.gidshares[Bgid][index+1:]... )
+				sc.gidshares[gid]=append(sc.gidshares[gid], shared)
+				break
+			}
 		}
+	}else{
+		sc.gidshares[gid]=append(sc.gidshares[gid], shared)
 	}
 	newconfig.Num = sc.configs[len(sc.configs)-1].Num+1
 	for key,value := range sc.gidshares{
@@ -262,6 +292,8 @@ func(sc *ShardCtrler)MoveShard2Gid(shared int,gid int)Config{
 func(sc *ShardCtrler)QueryConfig(num int)Config{
 	if num == -1{
 		return sc.configs[len(sc.configs)-1]
+	}else if num > len(sc.configs)-1{
+		return sc.configs[len(sc.configs)-1]
 	}else{
 		return sc.configs[num]
 	}
@@ -269,22 +301,27 @@ func(sc *ShardCtrler)QueryConfig(num int)Config{
 func (sc *ShardCtrler) ConfigExecute(op *Op) (res Result) {
 	// 调用时要求持有锁
 	res.LastSeq = op.Seq
+	res.Id = op.Id
 	switch op.OpType {
 	case OPJoin:
 		newConfig := sc.CreateNewConfig(op.Servers)
 		sc.configs=append(sc.configs, newConfig)
+		DPrintf("id:%v OPJoin %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPLeave:
 		newConfig := sc.RemoveGidServers(op.GIDs)
 		sc.configs=append(sc.configs, newConfig)
+		DPrintf("id:%v OPLeave %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPMove:
 		newConfig := sc.MoveShard2Gid(op.Shard, op.GID)
 		sc.configs=append(sc.configs, newConfig)
+		DPrintf("id:%v OPMovelen  %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPQuery:
 		rConfig := sc.QueryConfig(op.Num)
 		res.Config = rConfig
+		//DPrintf("OPQuery res:%v",rConfig)
 		res.Err = OK
 	}
 	return
@@ -295,7 +332,7 @@ func (sc *ShardCtrler) ifDuplicate(clientId int64, seqId int64) bool {
 	if !exist {
 		return false
 	}
-	return seqId <= lastResult.LastSeq
+	return seqId <= lastResult
 }
 func (sc *ShardCtrler) ApplyHandler() {
 	for !sc.killed() {
@@ -307,7 +344,7 @@ func (sc *ShardCtrler) ApplyHandler() {
 			res := Result{}
 			if !sc.ifDuplicate(op.Id,op.Seq){
 				res = sc.ConfigExecute(&op)
-				sc.historyMap[op.Id] = res
+				sc.historyMap[op.Id] = res.LastSeq
 			}
 			sc.mu.Unlock()
 			if _, isLead := sc.rf.GetState(); isLead {
@@ -322,19 +359,24 @@ func (sc *ShardCtrler) ApplyHandler() {
 // me is the index of the current server in servers[].
 //
 func StartServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister) *ShardCtrler {
+	DPrintf("------------------------------------------------\n")
 	sc := new(ShardCtrler)
 	sc.me = me
-
+	sc.mu=sync.Mutex{}
 	sc.configs = make([]Config, 1)
 	sc.configs[0].Groups = map[int][]string{}
-
+	sc.configs[0].Num = 0
+	for index,_ := range sc.configs[0].Shards{
+		sc.configs[0].Shards[index] = 0
+	}
 	labgob.Register(Op{})
 	sc.applyCh = make(chan raft.ApplyMsg)
 	sc.rf = raft.Make(servers, me, persister, sc.applyCh)
 
 	// Your code here.
-	sc.historyMap = make(map[int64]Result)
+	sc.historyMap = make(map[int64]int64)
 	sc.waiCh = make(map[int]chan Result)
 	sc.gidshares=make(map[int][]int,0)
+	go sc.ApplyHandler()
 	return sc
 }

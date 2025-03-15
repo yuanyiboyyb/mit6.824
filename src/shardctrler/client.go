@@ -6,11 +6,33 @@ package shardctrler
 
 import (
 	"crypto/rand"
+	"fmt"
+	"log"
 	"math/big"
+	"os"
 
 	"6.824/labrpc"
 )
-
+func init() {
+    if debugMode {
+	    logFile, err := os.OpenFile("debug.log", os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0666)
+	    if err != nil {
+		    fmt.Println("无法打开日志文件:", err)
+		    return
+	    }
+	    // 创建 Logger
+	    debugLogger = log.New(logFile, "[DEBUG] ", log.Lshortfile)
+    }
+} 
+const (
+    debugMode = true
+)
+var  debugLogger *log.Logger
+func DPrintf(format string,args ...interface{}) {
+	if debugMode && debugLogger != nil {
+		debugLogger.Printf(format, args...)
+	}
+}
 type Clerk struct {
 	servers  []*labrpc.ClientEnd
 	// Your data here.
@@ -34,7 +56,6 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck.seq = 0
 	ck.id = nrand()
 	ck.leaderId = -1
-
 	return ck
 }
 func(ck *Clerk)getseq()(Sendseq int64){
@@ -44,13 +65,13 @@ func(ck *Clerk)getseq()(Sendseq int64){
 }
 
 func (ck *Clerk) Query(num int) Config {
-	args := &QueryArgs{Num: num,Seq: ck.getseq(),Id:ck.id}
+	args := QueryArgs{Num: num,Seq: ck.getseq(),Id:ck.id}
 	// Your code here.
-	args.Num = num
-	var reply MyReply
+	reply:=MyReply{}
 	for {
 		for _, srv := range ck.servers {
-			ok := srv.Call("ShardCtrler.Query", args, &reply)
+			//DPrintf("Clerk Query\n");
+			ok := srv.Call("ShardCtrler.Query", &args, &reply)
 			if ok{
 				if reply.Err == OK{
 					return reply.Config
@@ -65,9 +86,10 @@ func (ck *Clerk) Query(num int) Config {
 }
 
 func (ck *Clerk) Join(servers map[int][]string) {
+	//DPrintf("Clerk Join\n");
 	args := &JoinArgs{Servers: servers,Seq: ck.getseq(),Id: ck.id}
 	// Your code here.
-	var reply MyReply
+	reply:=MyReply{}
 	for {
 		for _, srv := range ck.servers {
 			ok := srv.Call("ShardCtrler.Join", args, &reply)
@@ -83,13 +105,14 @@ func (ck *Clerk) Join(servers map[int][]string) {
 }
 
 func (ck *Clerk) Leave(gids []int) {
-	args := &LeaveArgs{GIDs: gids,Seq: ck.getseq(),Id: ck.id}
+	//DPrintf("Clerk Leave\n");
+	args := LeaveArgs{GIDs: gids,Seq: ck.getseq(),Id: ck.id}
 	// Your code here.
-	var reply MyReply
+	reply:=MyReply{}
 	for {
 		// try each known server.
 		for _, srv := range ck.servers {
-			ok := srv.Call("ShardCtrler.Join", args, &reply)
+			ok := srv.Call("ShardCtrler.Leave", &args, &reply)
 			if ok {
 				if reply.Err == OK{
 					return
@@ -104,7 +127,7 @@ func (ck *Clerk) Leave(gids []int) {
 func (ck *Clerk) Move(shard int, gid int) {
 	args := &MoveArgs{Shard: shard,GID: gid,Seq: ck.getseq(),Id: ck.id}
 	// Your code here.
-	var reply MyReply
+	reply:=MyReply{}
 	for {
 		// try each known server.
 		for _, srv := range ck.servers {
