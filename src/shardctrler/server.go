@@ -71,20 +71,20 @@ func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
 
 	timer:=time.NewTicker(200*time.Millisecond)
 	defer timer.Stop()
-	DPrintf("%v start",opargs.OpType)
+	//DPrintf("%v start",opargs.OpType)
 	select{
 	case<-timer.C:
 		res.Err = ErrWrongLeader
-		DPrintf("%v lost\n",opargs.OpType)
+		//DPrintf("%v lost\n",opargs.OpType)
 		return
 	case msg := <-newch:
 		if msg.LastSeq == opargs.Seq && msg.Id == opargs.Id{
 			res = msg
-			DPrintf("%v success\n",opargs.OpType)
+			//DPrintf("%v success\n",opargs.OpType)
 			return
 		}else {
 			res.Err = ErrWrongLeader
-			DPrintf("%v wrong\n",opargs.OpType)
+			//DPrintf("%v wrong\n",opargs.OpType)
 			return
 		}
 	}
@@ -220,7 +220,7 @@ func(sc *ShardCtrler)CreateNewConfig(Servers map[int][]string)Config{
 	sort.Slice(gids,func(i,j int) bool{
 		return (len(sc.gidshares[gids[i]])>len(sc.gidshares[gids[j]])) || (len(sc.gidshares[gids[i]]) == len(sc.gidshares[gids[j]]) && gids[i] < gids[j])
 	})
-	DPrintf("id:%v gids:%v",sc.me,gids)
+	//DPrintf("id:%v gids:%v",sc.me,gids)
 	need:=make([]int,0)
 	for index,_:=range sc.configs[len(sc.configs)-1].Shards{
 		if  sc.configs[len(sc.configs)-1].Shards[index]== 0{
@@ -259,7 +259,7 @@ func(sc *ShardCtrler)RemoveGidServers(Gids []int)Config{
 	sort.Slice(need,func(i,j int) bool{
 		return need[i]>need[j]
 	})
-	DPrintf("id:%v gids:%v",sc.me,gids)
+	//DPrintf("id:%v gids:%v",sc.me,gids)
 	newconfig.Shards = sc.getaverage(gids,need)
 	newconfig.Num = sc.configs[len(sc.configs)-1].Num+1
 	return newconfig
@@ -306,22 +306,22 @@ func (sc *ShardCtrler) ConfigExecute(op *Op) (res Result) {
 	case OPJoin:
 		newConfig := sc.CreateNewConfig(op.Servers)
 		sc.configs=append(sc.configs, newConfig)
-		DPrintf("id:%v OPJoin %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		//DPrintf("id:%v OPJoin %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPLeave:
 		newConfig := sc.RemoveGidServers(op.GIDs)
 		sc.configs=append(sc.configs, newConfig)
-		DPrintf("id:%v OPLeave %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		//DPrintf("id:%v OPLeave %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPMove:
 		newConfig := sc.MoveShard2Gid(op.Shard, op.GID)
 		sc.configs=append(sc.configs, newConfig)
-		DPrintf("id:%v OPMovelen  %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		//DPrintf("id:%v OPMovelen  %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPQuery:
 		rConfig := sc.QueryConfig(op.Num)
 		res.Config = rConfig
-		//DPrintf("OPQuery res:%v",rConfig)
+		////DPrintf("OPQuery res:%v",rConfig)
 		res.Err = OK
 	}
 	return
@@ -359,7 +359,7 @@ func (sc *ShardCtrler) ApplyHandler() {
 // me is the index of the current server in servers[].
 //
 func StartServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister) *ShardCtrler {
-	DPrintf("------------------------------------------------\n")
+	//DPrintf("------------------------------------------------\n")
 	sc := new(ShardCtrler)
 	sc.me = me
 	sc.mu=sync.Mutex{}

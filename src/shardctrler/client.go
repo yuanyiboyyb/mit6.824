@@ -6,14 +6,15 @@ package shardctrler
 
 import (
 	"crypto/rand"
-	"fmt"
-	"log"
+	//"fmt"
+	//"log"
 	"math/big"
-	"os"
+	//"os"
 
 	"6.824/labrpc"
 )
-func init() {
+
+/* func init() {
     if debugMode {
 	    logFile, err := os.OpenFile("debug.log", os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0666)
 	    if err != nil {
@@ -23,7 +24,7 @@ func init() {
 	    // 创建 Logger
 	    debugLogger = log.New(logFile, "[DEBUG] ", log.Lshortfile)
     }
-} 
+}
 const (
     debugMode = true
 )
@@ -32,7 +33,7 @@ func DPrintf(format string,args ...interface{}) {
 	if debugMode && debugLogger != nil {
 		debugLogger.Printf(format, args...)
 	}
-}
+} */
 type Clerk struct {
 	servers  []*labrpc.ClientEnd
 	// Your data here.

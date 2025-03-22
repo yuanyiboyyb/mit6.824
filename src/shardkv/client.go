@@ -101,6 +101,9 @@ func (ck *Clerk) Get(key string) string {
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
 				}
+				if ok && reply.Err == ErrWait{
+					time.Sleep(50 * time.Millisecond)
+				}
 
 			}
 		}
@@ -138,7 +141,7 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 				si:= ck.leaderid[gid]
 				srv:=ck.make_end(servers[si])
 				var reply PutAppendReply
-				ok := srv.Call("ShardKV.Get", &args, &reply)
+				ok := srv.Call("ShardKV.PutAppend", &args, &reply)
 				if ok && reply.Err == OK  {
 					return 
 				}
@@ -149,7 +152,9 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
 				}
-
+				if ok && reply.Err == ErrWait{
+					time.Sleep(50 * time.Millisecond)
+				}
 			}
 		}
 		time.Sleep(100 * time.Millisecond)
