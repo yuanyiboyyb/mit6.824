@@ -84,7 +84,15 @@ func (kv *KVServer) getWaitCh(index int) chan Op {
 	}
 	return ch
 }
-
+func (kv *KVServer) getWaitCh1(index int) (chan Op, bool) {
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+	ch, exist := kv.waitChMap[index]
+	if !exist {
+		return nil,false
+	}
+	return ch,true
+}
 func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	// Your code here.
 	if kv.killed(){
@@ -198,7 +206,10 @@ func (kv *KVServer)applyMsgHandlerLoop(){
 			}
 			kv.mu.Unlock()
 			if _, isLead := kv.rf.GetState(); isLead {
-				kv.getWaitCh(index) <- op
+				th,ok:=kv.getWaitCh1(index)
+				if ok {
+					th <- op
+				}
 			}
 		}else if msg.SnapshotValid{
             kv.decodeSnapshot(msg.SnapshotIndex, msg.Snapshot)

@@ -99,6 +99,15 @@ func (sc *ShardCtrler) getWaitCh(index int) chan Result {
 	}
 	return ch
 }
+func (sc *ShardCtrler) getWaitCh1(index int) (chan Result, bool) {
+	sc.mu.Lock()
+	defer sc.mu.Unlock()
+	ch, exist := sc.waiCh[index]
+	if !exist {
+		return nil,false
+	}
+	return ch,true
+}
 
 func (sc *ShardCtrler) Join(args *JoinArgs, reply *MyReply) {
 	// Your code here.
@@ -348,7 +357,10 @@ func (sc *ShardCtrler) ApplyHandler() {
 			}
 			sc.mu.Unlock()
 			if _, isLead := sc.rf.GetState(); isLead {
-				sc.getWaitCh(index) <- res
+				th,ok:=sc.getWaitCh1(index)
+				if ok {
+					th <- res
+				}
 			}
 		}	
 	}

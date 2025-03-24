@@ -153,11 +153,11 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
 				}
 				if ok && reply.Err == ErrWait{
-					time.Sleep(50 * time.Millisecond)
+					time.Sleep(100 * time.Millisecond)
 				}
 			}
 		}
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(200 * time.Millisecond)
 		// ask controler for the latest configuration.
 		ck.config = ck.sm.Query(-1)
 		for key:=range ck.config.Groups{
