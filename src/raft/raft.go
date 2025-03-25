@@ -97,11 +97,11 @@ const (
 const (
     chanLen  = 5
     novote = -1
-    electtimemax = 600
-    electtimemin = 300
-    heartsbeatmax = 600
-    heartsbeatmin = 300
-    HeartBeatInterval = 200
+    electtimemax = 600/4
+    electtimemin = 300/4
+    heartsbeatmax = 600/4
+    heartsbeatmin = 300/4
+    HeartBeatInterval = 200/4
 )
 type Logentries struct{
     Command     interface{}

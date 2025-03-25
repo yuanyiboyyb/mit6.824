@@ -65,7 +65,6 @@ func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
 	defer func() {
 		sc.mu.Lock()
 		delete(sc.waiCh, startIndex)
-		close(newch)
 		sc.mu.Unlock()
 	}()
 
@@ -98,15 +97,6 @@ func (sc *ShardCtrler) getWaitCh(index int) chan Result {
 		ch = sc.waiCh[index]
 	}
 	return ch
-}
-func (sc *ShardCtrler) getWaitCh1(index int) (chan Result, bool) {
-	sc.mu.Lock()
-	defer sc.mu.Unlock()
-	ch, exist := sc.waiCh[index]
-	if !exist {
-		return nil,false
-	}
-	return ch,true
 }
 
 func (sc *ShardCtrler) Join(args *JoinArgs, reply *MyReply) {
@@ -356,12 +346,8 @@ func (sc *ShardCtrler) ApplyHandler() {
 				sc.historyMap[op.Id] = res.LastSeq
 			}
 			sc.mu.Unlock()
-			if _, isLead := sc.rf.GetState(); isLead {
-				th,ok:=sc.getWaitCh1(index)
-				if ok {
-					th <- res
-				}
-			}
+			sc.getWaitCh(index)<-res
+		
 		}	
 	}
 }//

@@ -62,6 +62,12 @@ func MakeClerk(ctrlers []*labrpc.ClientEnd, make_end func(string) *labrpc.Client
 	ck.sm = shardctrler.MakeClerk(ctrlers)
 	ck.make_end = make_end
 	// You'll have to add code here.
+	
+
+	ck.config = shardctrler.Config{}
+	ck.config.Groups = map[int][]string{}
+	ck.config.Num = 0
+
 
 	ck.clientid = nrand()
     ck.commandid = 0
@@ -82,6 +88,7 @@ func (ck *Clerk) Get(key string) string {
 	args.Clientid=ck.clientid
 	args.Commandid=ck.commandid
 	for {
+		args.Num = ck.config.Num
 		shard := key2shard(key)
 		gid := ck.config.Shards[shard]
 		if servers, ok := ck.config.Groups[gid]; ok {
@@ -94,20 +101,19 @@ func (ck *Clerk) Get(key string) string {
 				if ok && (reply.Err == OK || reply.Err == ErrNoKey) {
 					return reply.Value
 				}
-				if ok && (reply.Err == ErrWrongGroup) {
+				if ok && (reply.Err == ErrWrongGroup || reply.Err==Errold) {
 					break 
 				}
 				// ... not ok, or ErrWrongLeader
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
 				}
-				if ok && reply.Err == ErrWait{
-					time.Sleep(50 * time.Millisecond)
+				if ok && (reply.Err == ErrWait || reply.Err == Errnew){
+					time.Sleep(2000 * time.Millisecond)
 				}
 
 			}
 		}
-		time.Sleep(100 * time.Millisecond)
 		// ask controler for the latest configuration.
 		ck.config = ck.sm.Query(-1)
 		for key:=range ck.config.Groups{
@@ -134,6 +140,7 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 
 
 	for {
+		args.Num = ck.config.Num
 		shard := key2shard(key)
 		gid := ck.config.Shards[shard]
 		if servers, ok := ck.config.Groups[gid]; ok {
@@ -142,22 +149,21 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 				srv:=ck.make_end(servers[si])
 				var reply PutAppendReply
 				ok := srv.Call("ShardKV.PutAppend", &args, &reply)
-				if ok && reply.Err == OK  {
+				if ok && (reply.Err == OK || reply.Err == ErrFail) {
 					return 
 				}
-				if ok && (reply.Err == ErrWrongGroup) {
+				if ok && (reply.Err == ErrWrongGroup || reply.Err==Errold) {
 					break
 				}
 				// ... not ok, or ErrWrongLeader
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
 				}
-				if ok && reply.Err == ErrWait{
-					time.Sleep(100 * time.Millisecond)
+				if ok && (reply.Err == ErrWait || reply.Err == Errnew){
+					time.Sleep(2000 * time.Millisecond)
 				}
 			}
 		}
-		time.Sleep(200 * time.Millisecond)
 		// ask controler for the latest configuration.
 		ck.config = ck.sm.Query(-1)
 		for key:=range ck.config.Groups{

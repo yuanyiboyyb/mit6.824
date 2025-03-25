@@ -16,6 +16,8 @@ const (
 	ErrWrongLeader = "ErrWrongLeader"
 	ErrWait		   = "ErrWait"
 	ErrFail		   = "ErrFail"
+	Errold         = "Errold"
+	Errnew		   = "Errnew"
 )
 
 type Err string
@@ -31,6 +33,7 @@ type PutAppendArgs struct {
 	// otherwise RPC will break.
 	Commandid int
 	Clientid  int64
+	Num		  int
 }
 
 type PutAppendReply struct {
@@ -42,6 +45,7 @@ type GetArgs struct {
 	// You'll have to add definitions here.
 	Commandid int
 	Clientid 	int64
+	Num			int
 }
 
 type GetReply struct {
