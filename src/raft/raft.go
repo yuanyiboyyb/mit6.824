@@ -97,11 +97,11 @@ const (
 const (
     chanLen  = 5
     novote = -1
-    electtimemax = 600/4
-    electtimemin = 300/4
-    heartsbeatmax = 600/4
-    heartsbeatmin = 300/4
-    HeartBeatInterval = 200/4
+    electtimemax = 500
+    electtimemin = 200
+    heartsbeatmax = 400
+    heartsbeatmin = 200
+    HeartBeatInterval = 50
 )
 type Logentries struct{
     Command     interface{}
@@ -251,6 +251,7 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// 保存状态和日志
 	rf.mu.Lock()
 	defer 	rf.mu.Unlock()
+	defer rf.persist()
 	rf.trimIndex(index)
 	rf.persister.SaveStateAndSnapshot(rf.EncoderState(), snapshot)
 }

@@ -385,7 +385,7 @@ func TestConcurrent1(t *testing.T) {
 func TestConcurrent2(t *testing.T) {
 	fmt.Printf("Test: more concurrent puts and configuration changes...\n")
 
-	cfg := make_config(t, 3, false, -1)
+	cfg := make_config(t, 3, false, 100)
 	defer cfg.cleanup()
 
 	ck := cfg.makeClient()

@@ -107,9 +107,10 @@ func (ck *Clerk) Get(key string) string {
 				// ... not ok, or ErrWrongLeader
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
+					time.Sleep(500 * time.Millisecond)
 				}
 				if ok && (reply.Err == ErrWait || reply.Err == Errnew){
-					time.Sleep(2000 * time.Millisecond)
+					time.Sleep(3000 * time.Millisecond)
 				}
 
 			}
@@ -121,7 +122,6 @@ func (ck *Clerk) Get(key string) string {
 				ck.leaderid[key]=0
 			}
 		}
-		
 	}
 }
 
@@ -158,9 +158,10 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 				// ... not ok, or ErrWrongLeader
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
+					time.Sleep(500 * time.Millisecond)
 				}
 				if ok && (reply.Err == ErrWait || reply.Err == Errnew){
-					time.Sleep(2000 * time.Millisecond)
+					time.Sleep(3000 * time.Millisecond)
 				}
 			}
 		}
