@@ -136,7 +136,7 @@ func (kv *ShardKV)DPrintf(format string,args ...interface{}) {
 func (kv *ShardKV)Lostshards(target int,servers []string,args *Shardsrequest,apply *Shardaoly){
 	i:=0
 	for{
-		time.Sleep(100*time.Millisecond)
+		//time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
 		kv.DPrintf("loop 2")
 		if kv.killed() {
 			return
@@ -155,16 +155,17 @@ func (kv *ShardKV)Lostshards(target int,servers []string,args *Shardsrequest,app
 				kv.DPrintf("SHARD %v push success %v",target,apply.Err)
 				return
 			}else if apply.Err == Errnew{
-				time.Sleep(500*time.Millisecond)
+				kv.DPrintf("ERRNEW")
+				time.Sleep(2000*time.Millisecond)
 			}else{
-				//kv.DPrintf("1212122 %v",apply.Err == ErrWrongLeader)
+				kv.DPrintf("1212122 %v",apply.Err == ErrWrongLeader)
 				i=(i+1)%len(servers)	
-				time.Sleep(100*time.Millisecond)
+				//time.Sleep(3000*time.Millisecond)
 			}
 		}else{
 			//kv.DPrintf("---------------------")
 			i=(i+1)%len(servers)
-			time.Sleep(100*time.Millisecond)
+			//time.Sleep(500*time.Millisecond)
 		}
 	}	
 }
@@ -241,13 +242,15 @@ func (kv *ShardKV) dealnewshard(){
 	kv.mu.Unlock()
 	for {
 		kv.DPrintf("loop 3")
-		time.Sleep(1000*time.Millisecond)
+		time.Sleep(2000*time.Millisecond)
 		flag:=true
 		if kv.killed() {
+			kv.DPrintf("loo3 1 return")
 			return 
 		}
 		_, isLeader := kv.rf.GetState()
 		if !isLeader{
+			kv.DPrintf("loo3 2 return")
 			return 
 		}
 		kv.mu.Lock()
@@ -263,10 +266,12 @@ func (kv *ShardKV) dealnewshard(){
 			for{
 				kv.DPrintf("loop 4")
 				if kv.killed() {
+					kv.DPrintf("loo4 1 return")
 					return
 				}
 				_, isLeader := kv.rf.GetState()
 				if !isLeader{
+					kv.DPrintf("loo4 2 return")
 					return
 				}
 				kv.mu.Lock()
@@ -281,7 +286,7 @@ func (kv *ShardKV) dealnewshard(){
 					kv.mu.Unlock()
 				}()
 		
-				timer:=time.NewTicker(1000*time.Millisecond)
+				timer:=time.NewTicker(500*time.Millisecond)
 				defer timer.Stop()
 		
 				select{
@@ -290,7 +295,7 @@ func (kv *ShardKV) dealnewshard(){
 						return
 					case <-timer.C:
 				}
-				time.Sleep(500*time.Millisecond)
+				//time.Sleep(500*time.Millisecond)
 			}
 		}
 	}
@@ -324,18 +329,18 @@ func (kv *ShardKV)Applyconfig(config shardctrler.Config){
 			return
 		case <-timer.C:
 		}
-		time.Sleep(100*time.Millisecond)
+		//time.Sleep(100*time.Millisecond)
 	}
 }
 func (kv *ShardKV) monitor(){
 	for !kv.killed() {
 		_, isLeader := kv.rf.GetState()
 		if isLeader {
-			kv.mu.Lock()
+			kv.DPrintf("121212")
 			switch kv.State{
 			case MONITOR:
-				kv.mu.Unlock()
 				config:= kv.sm.Query(kv.config.Num+1)
+				kv.DPrintf("%v",config)
 				kv.mu.Lock()
 				if config.Num == kv.config.Num+1{
 					kv.mu.Unlock()
@@ -343,15 +348,13 @@ func (kv *ShardKV) monitor(){
 					kv.Applyconfig(config)
 				}else{
 					kv.mu.Unlock()
+					time.Sleep(2000*time.Millisecond)
 				}
 			case SHARD:
-				kv.mu.Unlock()
 				kv.DPrintf("START DEAL SHARES")
 				kv.dealnewshard()
-				time.Sleep(500*time.Millisecond)
 			}
 		}
-		time.Sleep(200*time.Millisecond)
 	}
 }
 /* func (kv *ShardKV) monitor() {
@@ -413,7 +416,7 @@ func (kv *ShardKV) Get(args *GetArgs, reply *GetReply) {
 		kv.mu.Unlock()
 	}()
 
-	timer:=time.NewTicker(2000*time.Millisecond)
+	timer:=time.NewTicker(4000*time.Millisecond)
 	defer timer.Stop()
 	
 	select{
@@ -425,12 +428,12 @@ func (kv *ShardKV) Get(args *GetArgs, reply *GetReply) {
 		}else if replyOp.Err == ErrWait{
 			reply.Err = ErrWait
 		}else if replyOp.Err == ErrFail{
-			//kv.DPrintf("111111111")
+			kv.DPrintf("111111111")
 			reply.Err = ErrFail
 		}else {
 			reply.Err = OK
 			reply.Value = replyOp.Value
-			///kv.DPrintf("GET FINISH %v %v %v %v",args.Key,key2shard(args.Key),replyOp.Value,reply.Value)
+			kv.DPrintf("GET FINISH %v %v %v %v",args.Key,key2shard(args.Key),replyOp.Value,reply.Value)
 			return
 		}
 	case <-timer.C:
@@ -582,12 +585,15 @@ func (kv *ShardKV) isNeedSnapshot() bool {
 	return len >= 3*kv.maxraftstate
 }
 func (kv *ShardKV) makeSnapshot(index int) { 
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
 	e.Encode(kv.kvPersist)
 	e.Encode(kv.commandMap)
 	e.Encode(kv.config)
-	e.Encode((kv.oldconfig)) 
+	e.Encode((kv.oldconfig))
+	e.Encode(kv.State) 
 	snapshot := w.Bytes()
 	kv.rf.Snapshot(index, snapshot)
 }
@@ -644,7 +650,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 						}
 					}
 					kv.State = MONITOR
-					//kv.DPrintf("ALL FINISH")
+					kv.DPrintf("ALL FINISH")
 					flag = true
 				}
 			}else if op.OpType == OPPUSH {
@@ -656,7 +662,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 					op.Err = Errnew
 				}else{
 					if kv.kvPersist[op.Keyshard].State == WAITPUSH{
-						//kv.DPrintf("SHARE:%v pull success new:%v old:%v from %v",op.Keyshard,op.Shard,kv.kvPersist[op.Keyshard].Kv,op.Index)
+						kv.DPrintf("SHARE:%v pull success new:%v old:%v from %v",op.Keyshard,op.Shard,kv.kvPersist[op.Keyshard].Kv,op.Index)
 						kv.kvPersist[op.Keyshard].Kv = op.Shard
 						kv.kvPersist[op.Keyshard].State = READY
 						for key,value:= range op.CommandMap{
@@ -664,7 +670,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 						}
 						op.Err = OK
 						flag=true
-						kv.DPrintf("111 SHARD %v push success",op.Keyshard)
+						kv.DPrintf("SHARD %v push success %v",op.Keyshard,kv.kvPersist[op.Keyshard].Kv)
 					}else if kv.kvPersist[op.Keyshard].State == READY{
 						op.Err=Errold
 					}else{
@@ -679,7 +685,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 					op.Err = ErrWrongGroup
 					//kv.DPrintf("ERRWRONGGROUP:%v %v %v",op.Key,key2shard(op.Key))
 				}else{
-					if !kv.ifDuplicate(op.ClientId, op.SeqId) || op.OpType == "Get"{
+					if !kv.ifDuplicate(op.ClientId, op.SeqId)  || op.OpType == "Get" {
 						switch op.OpType {
 						case "Put":
 							kv.kvPersist[key2shard(op.Key)].Kv[op.Key] = op.Value
@@ -689,7 +695,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 							op.Value = kv.kvPersist[key2shard(op.Key)].Kv[op.Key]
 							//kv.DPrintf("op.value:%v",op.Value)
 						}
-						//kv.DPrintf("%v %v %v kv.kvpersist[%v].kv:%v",op.ClientId,op.SeqId,kv.commandMap[op.ClientId],key2shard(op.Key),kv.kvPersist[key2shard(op.Key)].Kv)
+						kv.DPrintf("%v %v %v kv.kvpersist[%v].kv:%v",op.ClientId,op.SeqId,kv.commandMap[op.ClientId],key2shard(op.Key),kv.kvPersist[key2shard(op.Key)].Kv)
 						op.Err = OK
 						kv.commandMap[op.ClientId] = op.SeqId
 					}else{
@@ -698,13 +704,13 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 				}
 			}
 			if kv.maxraftstate!=-1 && (kv.isNeedSnapshot() || flag ){
-				kv.makeSnapshot(msg.CommandIndex)
+				go kv.makeSnapshot(msg.CommandIndex)
 			}
 			
 			kv.mu.Unlock()
 			kv.getWaitCh(index)<-op
 		}else if msg.SnapshotValid{
-			//kv.DPrintf("~~~~~~~~~~~")
+			kv.DPrintf("~~~~~~~~~~~")
 			kv.decodeSnapshot(msg.SnapshotIndex, msg.Snapshot)
 		}
 	}
@@ -724,7 +730,7 @@ func (kv *ShardKV) decodeSnapshot(index int, snapshot []byte) {
 	defer kv.mu.Unlock()
 	kv.lastIncludeIndex = index
 
-	if d.Decode(&kv.kvPersist) != nil || d.Decode(&kv.commandMap) != nil  || d.Decode(&kv.config) != nil|| d.Decode(&kv.oldconfig) != nil {
+	if d.Decode(&kv.kvPersist) != nil || d.Decode(&kv.commandMap) != nil  || d.Decode(&kv.config) != nil|| d.Decode(&kv.oldconfig) != nil || d.Decode(&kv.State) != nil {
 		panic("error in parsing snapshot")
 	}
 	//DPrintf("----- install\n")
@@ -734,9 +740,9 @@ func (kv *ShardKV) decodeSnapshot(index int, snapshot []byte) {
 func StartServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister, maxraftstate int, gid int, ctrlers []*labrpc.ClientEnd, make_end func(string) *labrpc.ClientEnd) *ShardKV {
 	// call labgob.Register on structures you want
 	// Go's RPC library to marshall/unmarshall.
-	time.Sleep(500*time.Millisecond)
 	labgob.Register(Op{})
 	labgob.Register(ShardinKv{})
+	
 	
 	kv := new(ShardKV)
 	kv.me = me
@@ -780,7 +786,7 @@ func StartServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister,
 
 	kv.decodeSnapshot(kv.rf.GetFirstLog().Index,kv.persister.ReadSnapshot()) 
 
-	//kv.DPrintf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %v %v",kv.commandMap,*kv.kvPersist[0])
+	kv.DPrintf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %v %v",kv.commandMap,*kv.kvPersist[0])
 	go kv.applyMsgHandlerLoop()
 	go kv.monitor()
 	return kv

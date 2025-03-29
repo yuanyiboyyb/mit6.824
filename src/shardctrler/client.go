@@ -6,6 +6,10 @@ package shardctrler
 
 import (
 	"crypto/rand"
+
+	//"fmt"
+	"time"
+
 	//"fmt"
 	//"log"
 	"math/big"
@@ -71,7 +75,6 @@ func (ck *Clerk) Query(num int) Config {
 	reply:=MyReply{}
 	for {
 		for _, srv := range ck.servers {
-			//DPrintf("Clerk Query\n");
 			ok := srv.Call("ShardCtrler.Query", &args, &reply)
 			if ok{
 				if reply.Err == OK{
@@ -101,7 +104,9 @@ func (ck *Clerk) Join(servers map[int][]string) {
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
 			}
+			time.Sleep(100*time.Millisecond)
 		}
+		time.Sleep(200*time.Millisecond)
 	}
 }
 
@@ -121,7 +126,9 @@ func (ck *Clerk) Leave(gids []int) {
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
 			}
+			time.Sleep(100*time.Millisecond)
 		}
+		time.Sleep(200*time.Millisecond)
 	}
 }
 
@@ -140,6 +147,8 @@ func (ck *Clerk) Move(shard int, gid int) {
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
 			}
+			time.Sleep(500*time.Millisecond)
 		}
+		time.Sleep(1000*time.Millisecond)
 	}
 }

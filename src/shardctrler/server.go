@@ -56,6 +56,7 @@ type Op struct {
 	Id 			int64
 }
 func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
+    //fmt.Printf("``````````````````` %v\n",opargs.OpType)
 	_, ifLeader := sc.rf.GetState()
 	if !ifLeader{
 		return Result{Err: ErrWrongLeader}
@@ -68,7 +69,7 @@ func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
 		sc.mu.Unlock()
 	}()
 
-	timer:=time.NewTicker(200*time.Millisecond)
+	timer:=time.NewTicker(3000*time.Millisecond)
 	defer timer.Stop()
 	//DPrintf("%v start",opargs.OpType)
 	select{
@@ -290,10 +291,13 @@ func(sc *ShardCtrler)MoveShard2Gid(shared int,gid int)Config{
 }
 func(sc *ShardCtrler)QueryConfig(num int)Config{
 	if num == -1{
+		//fmt.Printf("newest %v\n",len(sc.configs)-1)
 		return sc.configs[len(sc.configs)-1]
 	}else if num > len(sc.configs)-1{
+		//fmt.Printf("newest %v\n",len(sc.configs)-1)
 		return sc.configs[len(sc.configs)-1]
 	}else{
+		//fmt.Printf("this %v\n",num)
 		return sc.configs[num]
 	}
 }
@@ -341,9 +345,11 @@ func (sc *ShardCtrler) ApplyHandler() {
 			op := log.Command.(Op)
 			sc.mu.Lock()
 			res := Result{}
-			if !sc.ifDuplicate(op.Id,op.Seq){
+			if !sc.ifDuplicate(op.Id,op.Seq) || op.OpType == OPQuery{
 				res = sc.ConfigExecute(&op)
 				sc.historyMap[op.Id] = res.LastSeq
+			}else{
+				res.Err = ErrOk
 			}
 			sc.mu.Unlock()
 			sc.getWaitCh(index)<-res

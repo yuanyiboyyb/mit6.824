@@ -35,6 +35,7 @@ const (
 	OK             = "OK"
 	ErrNoKey       = "ErrNoKey"
 	ErrWrongLeader = "ErrWrongLeader"
+	ErrOk		   = "ErrOk"
 )
 type JoinArgs struct {
 	Servers map[int][]string // new GID -> servers mappings

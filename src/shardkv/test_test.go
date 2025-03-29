@@ -551,7 +551,6 @@ func TestUnreliable1(t *testing.T) {
 		ck.Append(ka[i], x)
 		va[i] += x
 	}
-
 	cfg.join(0)
 	cfg.leave(1)
 
