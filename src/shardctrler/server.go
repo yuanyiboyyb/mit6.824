@@ -297,7 +297,7 @@ func(sc *ShardCtrler)QueryConfig(num int)Config{
 		//fmt.Printf("newest %v\n",len(sc.configs)-1)
 		return sc.configs[len(sc.configs)-1]
 	}else{
-		//fmt.Printf("this %v\n",num)
+		//fmt.Printf("this %v %v\n",num,sc.configs[num])
 		return sc.configs[num]
 	}
 }

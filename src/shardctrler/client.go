@@ -84,6 +84,8 @@ func (ck *Clerk) Query(num int) Config {
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
+			}else{
+				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
 		}
 	}
@@ -103,6 +105,8 @@ func (ck *Clerk) Join(servers map[int][]string) {
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
+			}else{
+				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
 			time.Sleep(100*time.Millisecond)
 		}
@@ -125,8 +129,9 @@ func (ck *Clerk) Leave(gids []int) {
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
+			}else{
+				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
-			time.Sleep(100*time.Millisecond)
 		}
 		time.Sleep(200*time.Millisecond)
 	}
@@ -146,6 +151,8 @@ func (ck *Clerk) Move(shard int, gid int) {
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
+			}else{
+				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
 			time.Sleep(500*time.Millisecond)
 		}

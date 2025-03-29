@@ -242,7 +242,7 @@ func (kv *ShardKV) dealnewshard(){
 	kv.mu.Unlock()
 	for {
 		kv.DPrintf("loop 3")
-		time.Sleep(2000*time.Millisecond)
+		time.Sleep(500*time.Millisecond)
 		flag:=true
 		if kv.killed() {
 			kv.DPrintf("loo3 1 return")
@@ -348,7 +348,7 @@ func (kv *ShardKV) monitor(){
 					kv.Applyconfig(config)
 				}else{
 					kv.mu.Unlock()
-					time.Sleep(2000*time.Millisecond)
+					time.Sleep(500*time.Millisecond)
 				}
 			case SHARD:
 				kv.DPrintf("START DEAL SHARES")
@@ -664,7 +664,7 @@ func (kv *ShardKV)applyMsgHandlerLoop(){
 					if kv.kvPersist[op.Keyshard].State == WAITPUSH{
 						kv.DPrintf("SHARE:%v pull success new:%v old:%v from %v",op.Keyshard,op.Shard,kv.kvPersist[op.Keyshard].Kv,op.Index)
 						kv.kvPersist[op.Keyshard].Kv = op.Shard
-						kv.kvPersist[op.Keyshard].State = READY
+						kv.kvPersist[op.Keyshard].State = WORK
 						for key,value:= range op.CommandMap{
 							kv.commandMap[key] = max(value,kv.commandMap[key])
 						}
