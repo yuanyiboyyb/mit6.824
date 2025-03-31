@@ -157,7 +157,6 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 				// ... not ok, or ErrWrongLeader
 				if !ok || reply.Err == ErrWrongLeader{
 					ck.leaderid[gid]=(ck.leaderid[gid]+1)%len(servers)
-					
 				}
 				if ok && (reply.Err == ErrWait || reply.Err == Errnew){
 					time.Sleep(3000 * time.Millisecond)
