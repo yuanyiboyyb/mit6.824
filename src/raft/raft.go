@@ -142,6 +142,7 @@ type Raft struct {
 	pendingnums		  int
 
 
+
 }
 
 // return currentTerm and whether this server
@@ -311,7 +312,7 @@ const (
 	SNAP = 2
 	VOTEFLAG = false
 	LOGFLAG  = false
-	SNAPFLAG = true
+	SNAPFLAG = false
 )
   func (rf *Raft)debugPrint(format string,flag int,args ...interface{}) {
 	if debugMode && debugLogger != nil {
@@ -1058,6 +1059,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.pendingnums = 0
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
+
 
     //2D
 

@@ -700,6 +700,7 @@ func TestUnreliable3(t *testing.T) {
 	time.Sleep(500 * time.Millisecond)
 	cfg.join(1)
 	cfg.join(0)
+	
 
 	time.Sleep(2 * time.Second)
 
@@ -934,7 +935,6 @@ func TestChallenge2Partial(t *testing.T) {
 	<-time.After(1 * time.Second)
 
 	// And finally: check that gets/puts for 101-owned keys now complete
-	fmt.Print("1111111111\n")
 	for i := 0; i < n; i++ {
 		shard := key2shard(ka[i])
 		if owned[shard] {
@@ -942,7 +942,6 @@ func TestChallenge2Partial(t *testing.T) {
 			ck.Put(ka[i], va[i]+"-2")
 			check(t, ck, ka[i], va[i]+"-2")
 		}
-		fmt.Print("121212121212\n")
 	}
 
 	fmt.Printf("  ... Passed\n")

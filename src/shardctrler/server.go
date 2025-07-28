@@ -1,6 +1,9 @@
 package shardctrler
 
 import (
+	"fmt"
+	"log"
+	"os"
 	"sort"
 	"sync"
 	"sync/atomic"
@@ -11,7 +14,26 @@ import (
 	"6.824/raft"
 )
 
-
+func init() {
+    if debugMode {
+	    logFile, err := os.OpenFile("debug1.log", os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0666)
+	    if err != nil {
+		    fmt.Println("无法打开日志文件:", err)
+		    return
+	    }
+	    // 创建 Logger
+	    debugLogger = log.New(logFile, "[DEBUG] ", log.Lshortfile)
+    }
+}
+const (
+    debugMode = true
+)
+var  debugLogger *log.Logger
+func DPrintf(format string,args ...interface{}) {
+	if debugMode && debugLogger != nil {
+		debugLogger.Printf(format, args...)
+	}
+} 
 type ShardCtrler struct {
 	mu      sync.Mutex
 	me      int
@@ -80,11 +102,14 @@ func (sc * ShardCtrler)HandleOp(opargs Op)(res Result){
 	case msg := <-newch:
 		if msg.LastSeq == opargs.Seq && msg.Id == opargs.Id{
 			res = msg
-			//DPrintf("%v success\n",opargs.OpType)
+			DPrintf("%v success\n",opargs.OpType)
+			return
+		}else if msg.Err == Errold{
+			res.Err = Errold
 			return
 		}else {
 			res.Err = ErrWrongLeader
-			//DPrintf("%v wrong\n",opargs.OpType)
+			DPrintf("%v wrong %v %v %v %v",opargs.OpType,msg.LastSeq,opargs.Seq,msg.Id,opargs.Id)
 			return
 		}
 	}
@@ -156,6 +181,7 @@ func (sc *ShardCtrler) Kill() {
 	sc.rf.Kill()
 	// Your code here, if desired.
 	atomic.StoreInt32(&sc.dead, 1)
+	time.Sleep(100*time.Millisecond);
 
 }
 
@@ -309,22 +335,22 @@ func (sc *ShardCtrler) ConfigExecute(op *Op) (res Result) {
 	case OPJoin:
 		newConfig := sc.CreateNewConfig(op.Servers)
 		sc.configs=append(sc.configs, newConfig)
-		//DPrintf("id:%v OPJoin %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		DPrintf("id:%v OPJoin %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPLeave:
 		newConfig := sc.RemoveGidServers(op.GIDs)
 		sc.configs=append(sc.configs, newConfig)
-		//DPrintf("id:%v OPLeave %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		DPrintf("id:%v OPLeave %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPMove:
 		newConfig := sc.MoveShard2Gid(op.Shard, op.GID)
 		sc.configs=append(sc.configs, newConfig)
-		//DPrintf("id:%v OPMovelen  %v\n",sc.me,sc.configs[len(sc.configs)-1])
+		DPrintf("id:%v OPMovelen  %v\n",sc.me,sc.configs[len(sc.configs)-1])
 		res.Err = OK
 	case OPQuery:
 		rConfig := sc.QueryConfig(op.Num)
 		res.Config = rConfig
-		////DPrintf("OPQuery res:%v",rConfig)
+		//DPrintf("OPQuery res:%v",rConfig)
 		res.Err = OK
 	}
 	return
@@ -349,7 +375,7 @@ func (sc *ShardCtrler) ApplyHandler() {
 				res = sc.ConfigExecute(&op)
 				sc.historyMap[op.Id] = res.LastSeq
 			}else{
-				res.Err = ErrOk
+				res.Err = Errold
 			}
 			sc.mu.Unlock()
 			sc.getWaitCh(index)<-res

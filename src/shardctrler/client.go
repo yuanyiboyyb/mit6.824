@@ -8,6 +8,7 @@ import (
 	"crypto/rand"
 
 	//"fmt"
+	"sync"
 	"time"
 
 	//"fmt"
@@ -39,6 +40,7 @@ func DPrintf(format string,args ...interface{}) {
 	}
 } */
 type Clerk struct {
+	mutex    sync.Mutex
 	servers  []*labrpc.ClientEnd
 	// Your data here.
 	seq      int64
@@ -56,6 +58,7 @@ func nrand() int64 {
 func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck := new(Clerk)
 	ck.servers = servers
+	ck.mutex  = sync.Mutex{}
 	// Your code here.
 
 	ck.seq = 0
@@ -64,8 +67,10 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	return ck
 }
 func(ck *Clerk)getseq()(Sendseq int64){
+	ck.mutex.Lock()
 	Sendseq = ck.seq
 	ck.seq++
+	ck.mutex.Unlock()
 	return
 }
 
@@ -88,6 +93,7 @@ func (ck *Clerk) Query(num int) Config {
 				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
 		}
+		time.Sleep(200*time.Millisecond)
 	}
 }
 
@@ -101,16 +107,18 @@ func (ck *Clerk) Join(servers map[int][]string) {
 			ok := srv.Call("ShardCtrler.Join", args, &reply)
 			if ok {
 				if reply.Err == OK{
+					time.Sleep(200*time.Millisecond)
 					return
+				}else if reply.Err == Errold{
+					return	
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
 			}else{
 				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
-			time.Sleep(100*time.Millisecond)
 		}
-		time.Sleep(200*time.Millisecond)
+		time.Sleep(500*time.Millisecond)
 	}
 }
 
@@ -125,7 +133,10 @@ func (ck *Clerk) Leave(gids []int) {
 			ok := srv.Call("ShardCtrler.Leave", &args, &reply)
 			if ok {
 				if reply.Err == OK{
+					time.Sleep(200*time.Millisecond)
 					return
+				}else if reply.Err == Errold{
+					return	
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
@@ -133,7 +144,7 @@ func (ck *Clerk) Leave(gids []int) {
 				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
 		}
-		time.Sleep(200*time.Millisecond)
+		time.Sleep(500*time.Millisecond)
 	}
 }
 
@@ -147,14 +158,16 @@ func (ck *Clerk) Move(shard int, gid int) {
 			ok := srv.Call("ShardCtrler.Move", args, &reply)
 			if ok {
 				if reply.Err == OK{
+					time.Sleep(200*time.Millisecond)
 					return
+				}else if reply.Err == Errold{
+					return	
 				}else{
 					ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 				}
 			}else{
 				ck.leaderId = (ck.leaderId+1)%len(ck.servers)
 			}
-			time.Sleep(500*time.Millisecond)
 		}
 		time.Sleep(1000*time.Millisecond)
 	}

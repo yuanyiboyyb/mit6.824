@@ -1,0 +1,1638 @@
+Test: static shards ...
+  ... Passed
+Test: join then leave ...
+  ... Passed
+Test: snapshots, join, and leave ...
+  ... Passed
+Test: servers miss configuration changes...
+  ... Passed
+Test: concurrent puts and configuration changes...
+  ... Passed
+Test: more concurrent puts and configuration changes...
+  ... Passed
+Test: concurrent configuration change and restart...
+  ... Passed
+Test: unreliable 1...
+  ... Passed
+Test: unreliable 2...
+panic: test timed out after 10m0s
+running tests:
+	TestUnreliable2 (5m25s)
+
+goroutine 462829 [running]:
+testing.(*M).startAlarm.func1()
+	/usr/local/go/src/testing/testing.go:2366 +0x385
+created by time.goFunc
+	/usr/local/go/src/time/sleep.go:177 +0x2d
+
+goroutine 1 [chan receive, 5 minutes]:
+testing.(*T).Run(0xc00012e9c0, {0x66af9c?, 0x0?}, 0x6819f0)
+	/usr/local/go/src/testing/testing.go:1750 +0x3ab
+testing.runTests.func1(0xc00012e9c0)
+	/usr/local/go/src/testing/testing.go:2161 +0x37
+testing.tRunner(0xc00012e9c0, 0xc00012bc70)
+	/usr/local/go/src/testing/testing.go:1689 +0xfb
+testing.runTests(0xc000010288, {0x838120, 0xd, 0xd}, {0x1?, 0x4fd5ae?, 0x83cd00?})
+	/usr/local/go/src/testing/testing.go:2159 +0x445
+testing.(*M).Run(0xc000034140)
+	/usr/local/go/src/testing/testing.go:2027 +0x68b
+main.main()
+	_testmain.go:71 +0x16c
+
+goroutine 274942 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48a80)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 183698 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcedc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 10 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc00007c2a0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 6
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 163723 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048fa20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462782 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f44c0, {0x66eb31?, 0x7f06037d3d88?}, {0x6147a0, 0xc003ec4080}, {0x6147e0, 0xc0024aa6e0})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48700, 0x1, 0xc003ec4080, 0xc0024aa6e0, 0x7ff)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x1)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462876
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 13 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc00007c780)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 6
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 16 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc00007ca20)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 6
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 117509 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002adb80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 19 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 88905 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159ce0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 23 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 52271 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146025 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9b80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 27 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001582c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 4614 [chan send, 9 minutes]:
+6.824/shardkv.TestStaticShards.func1(0x0)
+	/home/yyb/work/src/shardkv/test_test.go:66 +0x19e
+created by 6.824/shardkv.TestStaticShards in goroutine 6
+	/home/yyb/work/src/shardkv/test_test.go:61 +0x33c
+
+goroutine 61248 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f1e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61240 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048ef20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 35 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117493 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61224 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e9a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 39 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001586e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 6034 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 43 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16896 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462922 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f59a0, {0x66eb31?, 0x7f06039446a8?}, {0x6147a0, 0xc000be1580}, {0x6147e0, 0xc001325580})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48ee0, 0x1, 0xc000be1580, 0xc001325580, 0x2)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x1)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462920
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 47 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001589a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183644 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc001f48300)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 183637
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 183666 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce2c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 51 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158b00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 254855 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 163739 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16884 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158f20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274955 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48d20)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 254859 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16867 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0003ea000)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 16831
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 16908 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31119 [chan receive, 8 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000687b60)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 31115
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 31176 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 145976 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0007f0360)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 145972
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 146029 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9ce0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92736 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000d74300)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 92729
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 6051 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200791 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274931 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d487e0)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 274954 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48d20)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 274951 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48c40)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 52259 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002acf20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462859 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f4ce0, {0x66f6f0?, 0x7f064a79b5b8?}, {0x614820, 0xc0031b4dc0}, {0x614860, 0xc0045e45e8})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendInstallSnapshotRpc(0xc000d489a0, 0x1, 0xc0031b4dc0, 0xc0045e45e8)
+	/home/yyb/work/src/raft/raft.go:568 +0x77
+6.824/raft.(*Raft).SendAllAppendEntries.func2(0x1, 0xc0031b4dc0)
+	/home/yyb/work/src/raft/raft.go:745 +0x45
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462857
+	/home/yyb/work/src/raft/raft.go:743 +0x47f
+
+goroutine 92824 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274934 [select]:
+6.824/raft.(*Raft).ticker(0xc000d488c0)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 92814 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183674 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 163735 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61228 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048eb00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92800 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274891 [chan receive]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000a74240)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 274887
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 4615 [chan send, 9 minutes]:
+6.824/shardkv.TestStaticShards.func1(0x1)
+	/home/yyb/work/src/shardkv/test_test.go:66 +0x19e
+created by 6.824/shardkv.TestStaticShards in goroutine 6
+	/home/yyb/work/src/shardkv/test_test.go:61 +0x33c
+
+goroutine 16904 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274959 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48e00)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 31180 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f82c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16900 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001594a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462858 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f4ca0, {0x66eb31?, 0x7f060392ff28?}, {0x6147a0, 0xc0031b4fc0}, {0x6147e0, 0xc003bfaf60})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d489a0, 0x0, 0xc0031b4fc0, 0xc003bfaf60, 0x2)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x0)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462857
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 462860 [sleep]:
+time.Sleep(0x1406f40)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3dde0}, {0x66f6f0, 0x1b}, {0x6cb260, 0x614820}, {0xc000c14b40, 0x20d, 0x240}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:241 +0xb1
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 16876 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158c60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 88901 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159b80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16888 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 81903 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002acb00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462896 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f44c0, {0x66eb31?, 0x7f06036e6868?}, {0x6147a0, 0xc001399c40}, {0x6147e0, 0xc001291be0})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48700, 0x1, 0xc001399c40, 0xc001291be0, 0x800)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x1)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462894
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 52251 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002acc60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31200 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f89a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146009 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 4621 [chan send, 9 minutes]:
+6.824/shardkv.TestStaticShards.func1(0x7)
+	/home/yyb/work/src/shardkv/test_test.go:66 +0x19e
+created by 6.824/shardkv.TestStaticShards in goroutine 6
+	/home/yyb/work/src/shardkv/test_test.go:61 +0x33c
+
+goroutine 4622 [chan send, 9 minutes]:
+6.824/shardkv.TestStaticShards.func1(0x8)
+	/home/yyb/work/src/shardkv/test_test.go:66 +0x19e
+created by 6.824/shardkv.TestStaticShards in goroutine 6
+	/home/yyb/work/src/shardkv/test_test.go:61 +0x33c
+
+goroutine 4623 [chan send, 9 minutes]:
+6.824/shardkv.TestStaticShards.func1(0x9)
+	/home/yyb/work/src/shardkv/test_test.go:66 +0x19e
+created by 6.824/shardkv.TestStaticShards in goroutine 6
+	/home/yyb/work/src/shardkv/test_test.go:61 +0x33c
+
+goroutine 92796 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8f20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200767 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f4a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117505 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ada20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 254852 [chan receive, 5 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000859200)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 254810
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 462903 [select]:
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45500, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:269 +0x405
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 31170 [chan receive, 8 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000542540)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 31115
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 16880 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000158dc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61220 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117489 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16870 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0003ea600)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 16831
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 88897 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000159a20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61197 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc00019e420)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 61187
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 92810 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274963 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48ee0)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 52223 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183678 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce6e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183694 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcec60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 52267 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61191 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000845980)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 61187
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 92788 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 5484 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 6
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274895 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48700)
+	/home/yyb/work/src/raft/raft.go:965 +0x40d
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 254863 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf8c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 145979 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0007f08a0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 145972
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 274961 [runnable]:
+6.824/shardkv.(*ShardKV).killed(...)
+	/home/yyb/work/src/shardkv/server.go:529
+6.824/shardkv.(*ShardKV).monitor(0xc000d07a20)
+	/home/yyb/work/src/shardkv/server.go:336 +0x25
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 462913 [select]:
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000fd8300, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:269 +0x405
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 16892 [chan receive, 9 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001591e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 16831
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274944 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d074a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 16873 [chan receive, 9 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0003eacc0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 16831
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 61236 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048edc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146001 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002adce0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117497 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92820 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f91e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146013 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274887 [sleep]:
+time.Sleep(0xbebc200)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/shardctrler.(*Clerk).Join(0xc001cfaba0, 0xc001450420)
+	/home/yyb/work/src/shardctrler/client.go:113 +0x9a
+6.824/shardkv.(*config).joinm(0xc0020f4000, {0xc00125af08, 0x1, 0x64?})
+	/home/yyb/work/src/shardkv/config.go:324 +0x128
+6.824/shardkv.(*config).join(...)
+	/home/yyb/work/src/shardkv/config.go:311
+6.824/shardkv.TestUnreliable2(0xc00012e820)
+	/home/yyb/work/src/shardkv/test_test.go:573 +0xe9
+testing.tRunner(0xc00012e820, 0x6819f0)
+	/usr/local/go/src/testing/testing.go:1689 +0xfb
+created by testing.(*T).Run in goroutine 1
+	/usr/local/go/src/testing/testing.go:1742 +0x390
+
+goroutine 117481 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462902 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f44c0, {0x66eb31?, 0x7f06037d3d88?}, {0x6147a0, 0xc001ce5d80}, {0x6147e0, 0xc0024aa6a0})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48700, 0x1, 0xc001ce5d80, 0xc0024aa6a0, 0x800)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x1)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462900
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 61232 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048ec60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274943 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48a80)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 183682 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31192 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f86e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 254888 [runnable]:
+encoding/gob.NewEncoder(...)
+	/usr/local/go/src/encoding/gob/encoder.go:38
+6.824/labgob.NewEncoder({0x6c72e0, 0xc003d6b860})
+	/home/yyb/work/src/labgob/labgob.go:28 +0xda
+6.824/labrpc.(*ClientEnd).Call(0xc001bcb840, {0x66bd5d?, 0x11?}, {0x6146e0, 0xc0014b2060}, {0x614620, 0xc0003ce000})
+	/home/yyb/work/src/labrpc/labrpc.go:103 +0xfc
+6.824/shardctrler.(*Clerk).Query(0xc0019441e0, 0x7)
+	/home/yyb/work/src/shardctrler/client.go:78 +0xf8
+6.824/shardkv.(*ShardKV).monitor(0xc000d06f20)
+	/home/yyb/work/src/shardkv/server.go:342 +0x70
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 228276 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d066e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31184 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92805 [chan send, 7 minutes]:
+6.824/raft.(*Raft).applyLog(0xc0003d6c40)
+	/home/yyb/work/src/raft/raft.go:1019 +0x2c5
+6.824/raft.(*Raft).doApplyWork(0xc0003d6c40)
+	/home/yyb/work/src/raft/raft.go:995 +0x1a
+created by 6.824/raft.Make in goroutine 92729
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 183690 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dceb00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31196 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274894 [chan receive]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000a74a20)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 274887
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 228280 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06840)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274960 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07a20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200811 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf4a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 81975 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad4a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 52243 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac6e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 31204 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8b00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92803 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000d745a0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 92729
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 462895 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f4480, {0x66eb31?, 0x7f06037e6808?}, {0x6147a0, 0xc0028c1740}, {0x6147e0, 0xc0028b68c0})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48700, 0x0, 0xc0028c1740, 0xc0028b68c0, 0x800)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x0)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462894
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 31173 [chan receive, 8 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000542e40)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 31115
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 200795 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcef20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274936 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d071e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462884 [runnable]:
+encoding/gob.decString(0xc001b79e30?, 0xc0024e9140, {0x619a60?, 0xc004952e70?, 0x198?})
+	/usr/local/go/src/encoding/gob/decode.go:413 +0x328
+encoding/gob.(*Decoder).decodeStruct(0xc000fd5680?, 0xc0024e9020, {0x63d7c0?, 0xc004952e70?, 0x411f01?})
+	/usr/local/go/src/encoding/gob/decode.go:494 +0x174
+encoding/gob.(*Decoder).decOpFor.func4(0x618e60?, 0xc003d6bab8?, {0x63d7c0?, 0xc004952e70?, 0xc000fd56d8?})
+	/usr/local/go/src/encoding/gob/decode.go:897 +0x28
+encoding/gob.(*Decoder).decodeArrayHelper(0xc003d6bab8?, 0xc0024e9100, {0x618e60?, 0xc003d6bab8?, 0xc003d6bab0?}, 0xc0011fc2a0, 0x4, {0x6c7220, 0xc00214c090}, 0x0)
+	/usr/local/go/src/encoding/gob/decode.go:565 +0x21f
+encoding/gob.(*Decoder).decodeSlice(0xc001cc6800, 0xc0024e9100, {0x618e60?, 0xc003d6bab8?, 0xc001cc6800?}, 0xc0011fc2a0, {0x6c7220, 0xc00214c090}, 0x0)
+	/usr/local/go/src/encoding/gob/decode.go:667 +0x2c5
+encoding/gob.(*Decoder).decOpFor.func3(0x63d860?, 0xc003d6baa0?, {0x618e60?, 0xc003d6bab8?, 0xc003d6baa0?})
+	/usr/local/go/src/encoding/gob/decode.go:885 +0x33
+encoding/gob.(*Decoder).decodeStruct(0xc001cc6800?, 0xc0024e8fa0, {0x63d860?, 0xc003d6baa0?, 0xc0028cec10?})
+	/usr/local/go/src/encoding/gob/decode.go:494 +0x174
+encoding/gob.(*Decoder).decOpFor.func4(0x63fa80?, 0xc0028cec10?, {0x63d860?, 0xc003d6baa0?, 0xc0011fc318?})
+	/usr/local/go/src/encoding/gob/decode.go:897 +0x28
+encoding/gob.(*Decoder).decodeStruct(0xc001cc6800?, 0xc002e20f80, {0x656460?, 0xc0028cec00?, 0xc0024cab98?})
+	/usr/local/go/src/encoding/gob/decode.go:494 +0x174
+encoding/gob.(*Decoder).decodeValue(0xc001cc6800, 0x10, {0x628480?, 0xc0028cec00?, 0xc001cc6818?})
+	/usr/local/go/src/encoding/gob/decode.go:1247 +0x23f
+encoding/gob.(*Decoder).recvType(0xc001cc6800, 0x4c)
+	/usr/local/go/src/encoding/gob/decoder.go:68 +0xfa
+encoding/gob.(*Decoder).decodeTypeSequence(0xc001cc6800, 0x0)
+	/usr/local/go/src/encoding/gob/decoder.go:166 +0x76
+encoding/gob.(*Decoder).DecodeValue(0xc001cc6800, {0x6147e0?, 0xc001b7fc80?, 0xc0024cad18?})
+	/usr/local/go/src/encoding/gob/decoder.go:227 +0x16e
+encoding/gob.(*Decoder).Decode(0xc001cc6800, {0x6147e0?, 0xc001b7fc80?})
+	/usr/local/go/src/encoding/gob/decoder.go:204 +0x12f
+6.824/labgob.(*LabDecoder).Decode(0xc0024cae08, {0x6147e0, 0xc001b7fc80})
+	/home/yyb/work/src/labgob/labgob.go:55 +0x4e
+6.824/labrpc.(*ClientEnd).Call(0xc0013f5340, {0x66eb31?, 0x7f0603884840?}, {0x6147a0, 0xc003138480}, {0x6147e0, 0xc001b7fc80})
+	/home/yyb/work/src/labrpc/labrpc.go:129 +0x2f0
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48c40, 0x0, 0xc003138480, 0xc001b7fc80, 0x2)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x0)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462883
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 163731 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048fce0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274893 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48620)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 183686 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce9a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61194 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000845d40)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 61187
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 31208 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8c60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 52244 [runnable]:
+sync.runtime_SemacquireMutex(0xc000f1db70?, 0x25?, 0xc0030ddf80?)
+	/usr/local/go/src/runtime/sema.go:77 +0x25
+sync.(*Mutex).lockSlow(0x89ce08)
+	/usr/local/go/src/sync/mutex.go:171 +0x15d
+sync.(*Mutex).Lock(...)
+	/usr/local/go/src/sync/mutex.go:90
+6.824/labgob.checkType({0x6cb260, 0x6146e0})
+	/home/yyb/work/src/labgob/labgob.go:75 +0x69
+6.824/labgob.checkValue({0x6146e0?, 0xc0000eeb10?})
+	/home/yyb/work/src/labgob/labgob.go:69 +0x45
+6.824/labgob.(*LabEncoder).Encode(0xc001359738, {0x6146e0, 0xc0000eeb10})
+	/home/yyb/work/src/labgob/labgob.go:33 +0x28
+6.824/labrpc.(*ClientEnd).Call(0xc0003fde60, {0x66bd5d?, 0x11?}, {0x6146e0, 0xc0000eeb10}, {0x614620, 0xc000150d20})
+	/home/yyb/work/src/labrpc/labrpc.go:104 +0x111
+6.824/shardctrler.(*Clerk).Query(0xc00027af30, 0x7)
+	/home/yyb/work/src/shardctrler/client.go:78 +0xf8
+6.824/shardkv.(*ShardKV).monitor(0xc0002ac6e0)
+	/home/yyb/work/src/shardkv/server.go:342 +0x70
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 31188 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92733 [chan receive, 7 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000d74060)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 92729
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 462919 [sync.Mutex.Lock]:
+sync.runtime_SemacquireMutex(0x619ca0?, 0x60?, 0xc0000cd890?)
+	/usr/local/go/src/runtime/sema.go:77 +0x25
+sync.(*Mutex).lockSlow(0xc000d48620)
+	/usr/local/go/src/sync/mutex.go:171 +0x15d
+sync.(*Mutex).Lock(...)
+	/usr/local/go/src/sync/mutex.go:90
+6.824/raft.(*Raft).AppendEntriesHandler(0xc000d48620, 0xc0031b4180, 0xc003bfa280)
+	/home/yyb/work/src/raft/raft.go:828 +0x65
+reflect.Value.call({0xc00007e8c0?, 0xc000338178?, 0xc0009c7b18?}, {0x6683cb, 0x4}, {0xc0009c7d20, 0x3, 0xc0009c7b48?})
+	/usr/local/go/src/reflect/value.go:596 +0xca6
+reflect.Value.Call({0xc00007e8c0?, 0xc000338178?, 0xc001f46000?}, {0xc0009c7d20?, 0x64?, 0x408245?})
+	/usr/local/go/src/reflect/value.go:380 +0xb9
+6.824/labrpc.(*Service).dispatch(0xc0020f83c0, {0x66eb36, 0x14}, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000fd8300, ...}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:517 +0x36e
+6.824/labrpc.(*Server).dispatch(0xc002f8c0c0, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000fd8300, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:439 +0x1e5
+6.824/labrpc.(*Network).processReq.func1()
+	/home/yyb/work/src/labrpc/labrpc.go:257 +0x3f
+created by 6.824/labrpc.(*Network).processReq in goroutine 462913
+	/home/yyb/work/src/labrpc/labrpc.go:256 +0x1d0
+
+goroutine 146021 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f9a20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 52263 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61200 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e6e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 145982 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc0007f10e0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 145972
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 52247 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac9a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200807 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146017 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f98c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117477 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0001598c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 117485 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ac2c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274892 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48620)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 52255 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002acdc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 31115
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274933 [runnable]:
+6.824/shardkv.(*ShardKV).killed(...)
+	/home/yyb/work/src/shardkv/server.go:529
+6.824/shardkv.(*ShardKV).monitor(0xc000d07080)
+	/home/yyb/work/src/shardkv/server.go:336 +0x25
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 254875 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcfce0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 61244 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 254883 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06dc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146033 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048e2c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 92792 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f8dc0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 81971 [chan receive, 8 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad1e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 61187
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274950 [runnable]:
+6.824/raft.(*Raft).ticker(0xc000d48c40)
+	/home/yyb/work/src/raft/raft.go:965 +0x40d
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 228260 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06160)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200787 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 254867 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcfa20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 228292 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06c60)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 146005 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002f94a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462904 [select]:
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45600, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:269 +0x405
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 274941 [sleep]:
+time.Sleep(0x1dcd6500)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/shardkv.(*ShardKV).monitor(0xc000d07340)
+	/home/yyb/work/src/shardkv/server.go:351 +0x165
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 462916 [runnable]:
+time.Sleep(0x5b8d80)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3c9e0}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000fd8400, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:241 +0xb1
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 200799 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462905 [select]:
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3c9e0}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000531600, 0x1a6, 0x200}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:269 +0x405
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 274932 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07080)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 163719 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f8c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 200763 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048f340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183670 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dce420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183641 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc001f48000)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 183637
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 117501 [chan receive, 7 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc0002ad8c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 92729
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 183647 [chan receive, 6 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc001f485a0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 183637
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 462908 [runnable]:
+reflect.Value.NumField({0x6447a0?, 0xc0043541c0?, 0x199?})
+	/usr/local/go/src/reflect/value.go:2126 +0xa8
+encoding/gob.(*Encoder).encodeStruct(0xc00136cfa0, 0xc00136cfd8, 0xc0000b60f0, {0x6447a0?, 0xc0043541c0?, 0x96?})
+	/usr/local/go/src/encoding/gob/encode.go:315 +0x211
+encoding/gob.encOpFor.func4(0x6184a0?, 0xc0029041c0, {0x6447a0?, 0xc0043541c0?, 0x0?})
+	/usr/local/go/src/encoding/gob/encode.go:546 +0x6e
+encoding/gob.(*Encoder).encodeArray(0xc002904140?, 0xc0000cc1b0?, {0x6184a0?, 0xc001eecd98?, 0x408457?}, 0xc0000bc060, 0x0, 0x801, 0x0)
+	/usr/local/go/src/encoding/gob/encode.go:351 +0x4d4
+encoding/gob.encOpFor.func1(0x6184a0?, 0xc002904140, {0x6184a0?, 0xc001eecd98?, 0xc0002ab710?})
+	/usr/local/go/src/encoding/gob/encode.go:516 +0x139
+encoding/gob.(*Encoder).encodeSingle(0xc0000c8100?, 0x0?, 0x6cb260?, {0x6184a0?, 0xc001eecd98?, 0x4081ab?})
+	/usr/local/go/src/encoding/gob/encode.go:301 +0x1fc
+encoding/gob.(*Encoder).encode(0xc00136cfa0, 0xc00136cfd8, {0x6184a0?, 0xc001eecd98?, 0xc0000c8100?}, 0xc0000c8100)
+	/usr/local/go/src/encoding/gob/encode.go:668 +0x1d3
+encoding/gob.(*Encoder).EncodeValue(0xc00136cfa0, {0x6184a0?, 0xc001eecd98?, 0x6184a0?})
+	/usr/local/go/src/encoding/gob/encoder.go:251 +0x405
+encoding/gob.(*Encoder).Encode(0x6184a0?, {0x6184a0?, 0xc001eecd98?})
+	/usr/local/go/src/encoding/gob/encoder.go:176 +0x75
+6.824/labgob.(*LabEncoder).Encode(0xc001358330, {0x6184a0, 0xc001eecd98})
+	/home/yyb/work/src/labgob/labgob.go:34 +0x3f
+6.824/raft.(*Raft).EncoderState(0xc000d48620)
+	/home/yyb/work/src/raft/raft.go:171 +0xd2
+6.824/raft.(*Raft).persist(0xc000d48620)
+	/home/yyb/work/src/raft/raft.go:186 +0x18
+6.824/raft.(*Raft).AppendEntriesHandler(0xc000d48620, 0xc002904080, 0xc0013232e0)
+	/home/yyb/work/src/raft/raft.go:897 +0x39f
+reflect.Value.call({0xc00007e8c0?, 0xc000338178?, 0xc003353b18?}, {0x6683cb, 0x4}, {0xc003353d20, 0x3, 0xc003353b48?})
+	/usr/local/go/src/reflect/value.go:596 +0xca6
+reflect.Value.Call({0xc00007e8c0?, 0xc000338178?, 0xc0013581e0?}, {0xc003353d20?, 0x40?, 0x408245?})
+	/usr/local/go/src/reflect/value.go:380 +0xb9
+6.824/labrpc.(*Service).dispatch(0xc0020f83c0, {0x66eb36, 0x14}, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45500, ...}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:517 +0x36e
+6.824/labrpc.(*Server).dispatch(0xc002f8c0c0, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45500, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:439 +0x1e5
+6.824/labrpc.(*Network).processReq.func1()
+	/home/yyb/work/src/labrpc/labrpc.go:257 +0x3f
+created by 6.824/labrpc.(*Network).processReq in goroutine 462903
+	/home/yyb/work/src/labrpc/labrpc.go:256 +0x1d0
+
+goroutine 274888 [select]:
+6.824/labrpc.MakeNetwork.func1()
+	/home/yyb/work/src/labrpc/labrpc.go:166 +0xea
+created by 6.824/labrpc.MakeNetwork in goroutine 274887
+	/home/yyb/work/src/labrpc/labrpc.go:164 +0x196
+
+goroutine 254814 [chan receive, 5 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000858120)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 254810
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 462909 [sync.Mutex.Lock]:
+sync.runtime_SemacquireMutex(0x619ca0?, 0x60?, 0xc0000cd890?)
+	/usr/local/go/src/runtime/sema.go:77 +0x25
+sync.(*Mutex).lockSlow(0xc000d48620)
+	/usr/local/go/src/sync/mutex.go:171 +0x15d
+sync.(*Mutex).Lock(...)
+	/usr/local/go/src/sync/mutex.go:90
+6.824/raft.(*Raft).AppendEntriesHandler(0xc000d48620, 0xc002904640, 0xc001323580)
+	/home/yyb/work/src/raft/raft.go:828 +0x65
+reflect.Value.call({0xc00007e8c0?, 0xc000338178?, 0xc0009cbb18?}, {0x6683cb, 0x4}, {0xc0009cbd20, 0x3, 0xc0009cbb48?})
+	/usr/local/go/src/reflect/value.go:596 +0xca6
+reflect.Value.Call({0xc00007e8c0?, 0xc000338178?, 0xc001358340?}, {0xc0009cbd20?, 0x20?, 0x408245?})
+	/usr/local/go/src/reflect/value.go:380 +0xb9
+6.824/labrpc.(*Service).dispatch(0xc0020f83c0, {0x66eb36, 0x14}, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45600, ...}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:517 +0x36e
+6.824/labrpc.(*Server).dispatch(0xc002f8c0c0, {{0x619a60, 0xc002f3ca20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000b45600, 0xcd, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:439 +0x1e5
+6.824/labrpc.(*Network).processReq.func1()
+	/home/yyb/work/src/labrpc/labrpc.go:257 +0x3f
+created by 6.824/labrpc.(*Network).processReq in goroutine 462904
+	/home/yyb/work/src/labrpc/labrpc.go:256 +0x1d0
+
+goroutine 274962 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48ee0)
+	/home/yyb/work/src/raft/raft.go:965 +0x40d
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 274953 [sleep]:
+time.Sleep(0x1dcd6500)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/shardkv.(*ShardKV).monitor(0xc000d07760)
+	/home/yyb/work/src/shardkv/server.go:351 +0x165
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 163727 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc00048fb80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 145972
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462910 [runnable]:
+reflect.Value.NumField({0x657300?, 0xc00235b920?, 0x99?})
+	/usr/local/go/src/reflect/value.go:2126 +0xa8
+encoding/gob.(*Encoder).encodeStruct(0xc00136d040, 0xc004d270e0, 0xc000203458, {0x657300?, 0xc00235b920?, 0x4081ab?})
+	/usr/local/go/src/encoding/gob/encode.go:315 +0x211
+encoding/gob.(*Encoder).encode(0xc00136d040, 0xc004d270e0, {0x657300?, 0xc00235b920?, 0xc000105540?}, 0xc000105540)
+	/usr/local/go/src/encoding/gob/encode.go:666 +0x1b0
+encoding/gob.(*Encoder).encodeInterface(0xc00136d040, 0xc00136d078, {0x624d00?, 0xc00304f060?, 0x5ceaf4?})
+	/usr/local/go/src/encoding/gob/encode.go:419 +0x86b
+encoding/gob.encOpFor.func5(0x6447a0?, 0xc002904b40, {0x624d00?, 0xc00304f060?, 0x6cb260?})
+	/usr/local/go/src/encoding/gob/encode.go:554 +0xcf
+encoding/gob.(*Encoder).encodeStruct(0xc00136d040, 0xc00136d078, 0xc0000b60f0, {0x6447a0?, 0xc00304f060?, 0x96?})
+	/usr/local/go/src/encoding/gob/encode.go:328 +0x2de
+encoding/gob.encOpFor.func4(0x6184a0?, 0xc002904b00, {0x6447a0?, 0xc00304f060?, 0x0?})
+	/usr/local/go/src/encoding/gob/encode.go:546 +0x6e
+encoding/gob.(*Encoder).encodeArray(0xc002904a80?, 0xc0000cc1b0?, {0x6184a0?, 0xc0030633f8?, 0x408457?}, 0xc0000bc060, 0x0, 0x801, 0x0)
+	/usr/local/go/src/encoding/gob/encode.go:351 +0x4d4
+encoding/gob.encOpFor.func1(0x6184a0?, 0xc002904a80, {0x6184a0?, 0xc0030633f8?, 0xc0002ab710?})
+	/usr/local/go/src/encoding/gob/encode.go:516 +0x139
+encoding/gob.(*Encoder).encodeSingle(0xc0000c8100?, 0x0?, 0x6cb260?, {0x6184a0?, 0xc0030633f8?, 0x4081ab?})
+	/usr/local/go/src/encoding/gob/encode.go:301 +0x1fc
+encoding/gob.(*Encoder).encode(0xc00136d040, 0xc00136d078, {0x6184a0?, 0xc0030633f8?, 0xc0000c8100?}, 0xc0000c8100)
+	/usr/local/go/src/encoding/gob/encode.go:668 +0x1d3
+encoding/gob.(*Encoder).EncodeValue(0xc00136d040, {0x6184a0?, 0xc0030633f8?, 0x6184a0?})
+	/usr/local/go/src/encoding/gob/encoder.go:251 +0x405
+encoding/gob.(*Encoder).Encode(0x6184a0?, {0x6184a0?, 0xc0030633f8?})
+	/usr/local/go/src/encoding/gob/encoder.go:176 +0x75
+6.824/labgob.(*LabEncoder).Encode(0xc001358648, {0x6184a0, 0xc0030633f8})
+	/home/yyb/work/src/labgob/labgob.go:34 +0x3f
+6.824/raft.(*Raft).EncoderState(0xc000d482a0)
+	/home/yyb/work/src/raft/raft.go:171 +0xd2
+6.824/raft.(*Raft).persist(0xc000d482a0)
+	/home/yyb/work/src/raft/raft.go:186 +0x18
+6.824/raft.(*Raft).AppendEntriesHandler(0xc000d482a0, 0xc002904800, 0xc001323920)
+	/home/yyb/work/src/raft/raft.go:897 +0x39f
+reflect.Value.call({0xc00007e8c0?, 0xc000338078?, 0xc000fd1b18?}, {0x6683cb, 0x4}, {0xc000fd1d20, 0x3, 0xc000fd1b48?})
+	/usr/local/go/src/reflect/value.go:596 +0xca6
+reflect.Value.Call({0xc00007e8c0?, 0xc000338078?, 0xc001358490?}, {0xc000fd1d20?, 0x20?, 0x408245?})
+	/usr/local/go/src/reflect/value.go:380 +0xb9
+6.824/labrpc.(*Service).dispatch(0xc0020f8100, {0x66eb36, 0x14}, {{0x619a60, 0xc002f3c9e0}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000531600, ...}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:517 +0x36e
+6.824/labrpc.(*Server).dispatch(0xc002f8c090, {{0x619a60, 0xc002f3c9e0}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc000531600, 0x1a6, 0x200}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:439 +0x1e5
+6.824/labrpc.(*Network).processReq.func1()
+	/home/yyb/work/src/labrpc/labrpc.go:257 +0x3f
+created by 6.824/labrpc.(*Network).processReq in goroutine 462905
+	/home/yyb/work/src/labrpc/labrpc.go:256 +0x1d0
+
+goroutine 274939 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d489a0)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 200803 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcf1e0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274949 [runnable]:
+6.824/shardkv.(*ShardKV).monitor(0xc000d07600)
+	/home/yyb/work/src/shardkv/server.go:338 +0x3a
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 254871 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc001dcfb80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 462921 [runnable]:
+6.824/raft.(*Raft).SendAllAppendEntries.gowrap2()
+	/home/yyb/work/src/raft/raft.go:713
+runtime.goexit({})
+	/usr/local/go/src/runtime/asm_amd64.s:1695 +0x1
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462920
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 462784 [chan receive]:
+6.824/labrpc.(*ClientEnd).Call(0xc0013f4480, {0x66eb31?, 0x7f06037d3d88?}, {0x6147a0, 0xc003ec4300}, {0x6147e0, 0xc0024aa720})
+	/home/yyb/work/src/labrpc/labrpc.go:124 +0x226
+6.824/raft.(*Raft).SendAppendEntries(0xc000d48700, 0x0, 0xc003ec4300, 0xc0024aa720, 0x800)
+	/home/yyb/work/src/raft/raft.go:603 +0x85
+6.824/raft.(*Raft).SendAllAppendEntries.func1(0x0)
+	/home/yyb/work/src/raft/raft.go:730 +0xf3
+created by 6.824/raft.(*Raft).SendAllAppendEntries in goroutine 462783
+	/home/yyb/work/src/raft/raft.go:713 +0x306
+
+goroutine 274947 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48b60)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 254879 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06000)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274965 [sleep]:
+time.Sleep(0x1dcd6500)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/shardkv.(*ShardKV).monitor(0xc000d07b80)
+	/home/yyb/work/src/shardkv/server.go:351 +0x165
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 254849 [chan receive, 5 minutes]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000858e40)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 254810
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 274957 [runnable]:
+6.824/shardkv.(*ShardKV).monitor(0xc000d078c0)
+	/home/yyb/work/src/shardkv/server.go:337 +0x31
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 274958 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48e00)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 462861 [runnable]:
+time.Sleep(0xa7d8c0)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc002f3dd20}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc001146200, 0xc9, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:241 +0xb1
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 228272 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06580)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274935 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d488c0)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 274940 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07340)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274946 [select]:
+6.824/raft.(*Raft).ticker(0xc000d48b60)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 254887 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06f20)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 254810
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274938 [select]:
+6.824/raft.(*Raft).ticker(0xc000d489a0)
+	/home/yyb/work/src/raft/raft.go:965 +0x40d
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 274890 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d482a0)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+
+goroutine 228284 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d069a0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274937 [runnable]:
+6.824/raft.(*Raft).GetState(...)
+	/home/yyb/work/src/raft/raft.go:156
+6.824/shardkv.(*ShardKV).monitor(0xc000d071e0)
+	/home/yyb/work/src/shardkv/server.go:337 +0x35
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 228268 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06420)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274929 [chan receive]:
+6.824/shardctrler.(*ShardCtrler).ApplyHandler(0xc000a751a0)
+	/home/yyb/work/src/shardctrler/server.go:343 +0x6e
+created by 6.824/shardctrler.StartServer in goroutine 274887
+	/home/yyb/work/src/shardctrler/server.go:385 +0x2c5
+
+goroutine 228264 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d062c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274889 [select]:
+6.824/raft.(*Raft).ticker(0xc000d482a0)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 462923 [sleep]:
+time.Sleep(0x6acfc0)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/labrpc.(*Network).processReq(0xc0000ce050, {{0x619a60, 0xc0026d7750}, {0x66eb31, 0x19}, {0x6cb260, 0x6147a0}, {0xc001146300, 0xc9, 0x100}, ...})
+	/home/yyb/work/src/labrpc/labrpc.go:241 +0xb1
+created by 6.824/labrpc.MakeNetwork.func1 in goroutine 274888
+	/home/yyb/work/src/labrpc/labrpc.go:171 +0x58
+
+goroutine 274930 [select]:
+6.824/raft.(*Raft).ticker(0xc000d487e0)
+	/home/yyb/work/src/raft/raft.go:949 +0x29c
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1068 +0x2d6
+
+goroutine 274956 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d078c0)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274952 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07760)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 228288 [chan receive, 6 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d06b00)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 183637
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274948 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07600)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274964 [chan receive, 5 minutes]:
+6.824/shardkv.(*ShardKV).applyMsgHandlerLoop(0xc000d07b80)
+	/home/yyb/work/src/shardkv/server.go:613 +0x6e
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:791 +0x56b
+
+goroutine 274945 [runnable]:
+6.824/shardkv.(*ShardKV).killed(...)
+	/home/yyb/work/src/shardkv/server.go:529
+6.824/shardkv.(*ShardKV).monitor(0xc000d074a0)
+	/home/yyb/work/src/shardkv/server.go:336 +0x25
+created by 6.824/shardkv.StartServer in goroutine 274887
+	/home/yyb/work/src/shardkv/server.go:792 +0x5a7
+
+goroutine 274896 [sleep]:
+time.Sleep(0x1c9c380)
+	/usr/local/go/src/runtime/time.go:195 +0x115
+6.824/raft.(*Raft).doApplyWork(0xc000d48700)
+	/home/yyb/work/src/raft/raft.go:996 +0x25
+created by 6.824/raft.Make in goroutine 274887
+	/home/yyb/work/src/raft/raft.go:1069 +0x316
+exit status 2
+FAIL	6.824/shardkv	600.031s
