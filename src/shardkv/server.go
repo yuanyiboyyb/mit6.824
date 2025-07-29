@@ -526,7 +526,6 @@ func (kv *ShardKV) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 func (kv *ShardKV) Kill() {
 	atomic.StoreInt32(&kv.dead, 1)
 	kv.rf.Kill()
-	time.Sleep(1000*time.Millisecond);
 	// Your code here, if desired.
 }
 func (kv *ShardKV) killed() bool {
